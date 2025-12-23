@@ -1,0 +1,3499 @@
+[
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.AbonnementController",
+    "Method": "GetAbonnement",
+    "RelativePath": "api/Abonnement/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.AbonnementController",
+    "Method": "Delete",
+    "RelativePath": "api/Abonnement/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.AbonnementController",
+    "Method": "AssignActivation",
+    "RelativePath": "api/Abonnement/assign",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.ActivationDTOs.AssignActivationDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.AbonnementController",
+    "Method": "CreateAbonnement",
+    "RelativePath": "api/Abonnement/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TSE_Consultant_INT_Backend.Models.DTO.AbonnementsDTOs.CreateAbonnementDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.AbonnementController",
+    "Method": "Sell",
+    "RelativePath": "api/Abonnement/sell/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.AbonnementsDTOs.AbonnementSellDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ActivationController",
+    "Method": "GetByReference",
+    "RelativePath": "api/Activation/{reference}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reference",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ActivationController",
+    "Method": "Assign",
+    "RelativePath": "api/Activation/assign",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.ActivationDTOs.AssignActivationDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ActivationController",
+    "Method": "Create",
+    "RelativePath": "api/Activation/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.ActivationDTOs.CreateActivationDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ActivationController",
+    "Method": "RegisterDevice",
+    "RelativePath": "api/Activation/register-device/{activationCode}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "activationCode",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "device",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.Activations.ActivationDeviceDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ActivationController",
+    "Method": "Validate",
+    "RelativePath": "api/Activation/validate/{activationCode}/{deviceId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "activationCode",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "deviceId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "phone",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "tech_software_engineer_consultant_int_backend.Models.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthController",
+    "Method": "ValidateToken",
+    "RelativePath": "api/Auth/validate",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeLivraisonController",
+    "Method": "AddBonDeLivraison",
+    "RelativePath": "api/BonDeLivraison/Create-BonDeLivraison",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bonDeLivraisonCreateDTO",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.BLDTO.BLCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeLivraisonController",
+    "Method": "DeleteBonDeLivraison",
+    "RelativePath": "api/BonDeLivraison/delete-BonDeLivraison/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeLivraisonController",
+    "Method": "GetBonDeLivraisonById",
+    "RelativePath": "api/BonDeLivraison/get-Bon-De-Livraison-ID/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.BLDTO.BLDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeLivraisonController",
+    "Method": "GetBonDeLivraisonByRef",
+    "RelativePath": "api/BonDeLivraison/get-Bon-De-Livraison-Ref/{RefBL}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RefBL",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.BLDTO.BLDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeLivraisonController",
+    "Method": "GetBonDeLivraisons",
+    "RelativePath": "api/BonDeLivraison/Get-List-BonDeLivraisons",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.BLDTO.BLDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeLivraisonController",
+    "Method": "UpdateBonDeLivraison",
+    "RelativePath": "api/BonDeLivraison/update-BonDeLivraison/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bonDeLivraisonId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "bonDeLivraisonUpdateDTO",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.BLDTO.BLUpdateDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeSortieController",
+    "Method": "AddBonDeSortie",
+    "RelativePath": "api/BonDeSortie/Create-Bon-De-Sortie",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bonDeSortieCreateDTO",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.BonsDeSortieDTOs.BonDeSortieCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeSortieController",
+    "Method": "DeleteBonDeSortie",
+    "RelativePath": "api/BonDeSortie/delete-BonDeSortie/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeSortieController",
+    "Method": "GetBonDeSortieById",
+    "RelativePath": "api/BonDeSortie/get-Bon-De-Sortie-ByID/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.BonsDeSortieDTOs.BonDeSortieDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeSortieController",
+    "Method": "GetBonDeSortieByRef",
+    "RelativePath": "api/BonDeSortie/get-Bon-De-Sortie-ByRef/{reference}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reference",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.BonsDeSortieDTOs.BonDeSortieDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeSortieController",
+    "Method": "GetBonDeSorties",
+    "RelativePath": "api/BonDeSortie/Get-List-Bons-De-Sortie",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.BonsDeSortieDTOs.BonDeSortieDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.BonDeSortieController",
+    "Method": "UpdateBonDeSortie",
+    "RelativePath": "api/BonDeSortie/update-BonDeSortie/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bonDeSortieId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "newBonDeSortie",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.BonsDeSortieDTOs.BonDeSortieUpdateDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ChatHubController",
+    "Method": "AddGroup",
+    "RelativePath": "api/ChatHub/Add-Group",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ChatHubController",
+    "Method": "GetMessages",
+    "RelativePath": "api/ChatHub/get-messages",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ChatHubController",
+    "Method": "JoinGroup",
+    "RelativePath": "api/ChatHub/join-group",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ChatHubController",
+    "Method": "LeaveGroup",
+    "RelativePath": "api/ChatHub/leave-group",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ChatHubController",
+    "Method": "SendGroupMessage",
+    "RelativePath": "api/ChatHub/send-message-to-group",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "receiverGroupId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "messageContent",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ChatHubController",
+    "Method": "SendNewGroupMessage",
+    "RelativePath": "api/ChatHub/send-message-to-new-group",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ListIdsReceivers",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      },
+      {
+        "Name": "NewGroupName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "messageContent",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.CommandeController",
+    "Method": "AddCommande",
+    "RelativePath": "api/Commande/Create-Commande",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newCommande",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.CommandesDTOs.CommandeCreateDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "ListTransactions",
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.TransactionsDTOs.TransactionCreateDto, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.CommandeController",
+    "Method": "DeleteCommande",
+    "RelativePath": "api/Commande/delete-Commande/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.ValueTuple\u00602[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.CommandeController",
+    "Method": "GetCommandeById",
+    "RelativePath": "api/Commande/get-Commande-ByID/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.CommandesDTOs.CommandeDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.CommandeController",
+    "Method": "GetCommandeByRef",
+    "RelativePath": "api/Commande/get-Commande-ByRef/{reference}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commandeRef",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "reference",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.CommandesDTOs.CommandeDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.CommandeController",
+    "Method": "GetCommandes",
+    "RelativePath": "api/Commande/Get-List-Commandes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.CommandesDTOs.CommandeDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.CommandeController",
+    "Method": "GetTotalCommandeById",
+    "RelativePath": "api/Commande/get-Total-Commande-ByID/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.ValueTuple\u00602[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.CommandeController",
+    "Method": "UpdateCommande",
+    "RelativePath": "api/Commande/update-Commande/{commandeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commandeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "commande",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.CommandesDTOs.CommandeUpdateDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "ListTransactions",
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.Models.Transactions, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ContactController",
+    "Method": "EnvoyerMessage",
+    "RelativePath": "api/Contact",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "message",
+        "Type": "tech_software_engineer_consultant_int_backend.Models.ContactMessage",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.DossierController",
+    "Method": "AffectFoldertoPortfolio",
+    "RelativePath": "api/Dossier/affectFoldertoPortfolio/{idFolder}/{idPortfolio}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idFolder",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idPortfolio",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.DossierController",
+    "Method": "CreateDossier",
+    "RelativePath": "api/Dossier/CreateDossier",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dossier",
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Dossier",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.DossierController",
+    "Method": "DeleteDossier",
+    "RelativePath": "api/Dossier/DeleteDossier/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.DossierController",
+    "Method": "GetDossier",
+    "RelativePath": "api/Dossier/GetDossier/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Dossier",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.DossierController",
+    "Method": "GetDossiers",
+    "RelativePath": "api/Dossier/GetDossiers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.Models.Dossier, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.DossierController",
+    "Method": "UpdateDossier",
+    "RelativePath": "api/Dossier/UpdateDossier/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dossier",
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Dossier",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.EcheanceController",
+    "Method": "Create",
+    "RelativePath": "api/Echeance/Create-Echeance",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createEcheanceDto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.CreateEcheanceDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.EcheanceController",
+    "Method": "Delete",
+    "RelativePath": "api/Echeance/delete-Echeance/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.EcheanceController",
+    "Method": "GetAllEcheances",
+    "RelativePath": "api/Echeance/Get-List-Echeances",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[tech_software_engineer_consultant_int_backend.DTO.EcheanceDto, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.EcheanceController",
+    "Method": "GetById",
+    "RelativePath": "api/Echeance/getEcheance/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.EcheanceDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.EcheanceController",
+    "Method": "Update",
+    "RelativePath": "api/Echeance/update-Echeance/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateEcheanceDto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.UpdateEcheanceDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.FactureController",
+    "Method": "AddFacture",
+    "RelativePath": "api/Facture/Create-Facture",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "facture",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.FacturesDTOs.FactureCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.FactureController",
+    "Method": "DeleteFacture",
+    "RelativePath": "api/Facture/delete-Facture/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.FactureController",
+    "Method": "Generate",
+    "RelativePath": "api/Facture/generate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.FacturesDTOs.FacturePdfDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.FactureController",
+    "Method": "GetFactureById",
+    "RelativePath": "api/Facture/get-Facture-ID/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.FacturesDTOs.FactureDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.FactureController",
+    "Method": "GetFactureByRef",
+    "RelativePath": "api/Facture/get-Facture-Ref/{RefFacture}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RefFacture",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.FactureController",
+    "Method": "GetFactures",
+    "RelativePath": "api/Facture/Get-List-Factures",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.FacturesDTOs.FactureDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.FactureController",
+    "Method": "UpdateFacture",
+    "RelativePath": "api/Facture/update-Facture/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "factureId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "factureUpdateDTO",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.FacturesDTOs.FactureUpdateDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ImpayeController",
+    "Method": "AffectImpayetoDossier",
+    "RelativePath": "api/Impaye/AffecterImpayeAuDossier/{idImpaye}/{idDossier}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idImpaye",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idDossier",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ImpayeController",
+    "Method": "CreateImpaye",
+    "RelativePath": "api/Impaye/CreateImpaye/{idEcheance}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "impaye",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.ImpayesDTOs.ImpayeCreateDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "idEcheance",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ImpayeController",
+    "Method": "DeleteImpaye",
+    "RelativePath": "api/Impaye/DeleteImpaye/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ImpayeController",
+    "Method": "GetImpaye",
+    "RelativePath": "api/Impaye/GetImpaye/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Impaye",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ImpayeController",
+    "Method": "GetImpayes",
+    "RelativePath": "api/Impaye/GetImpayesList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.Models.Impaye, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ImpayeController",
+    "Method": "UpdateImpaye",
+    "RelativePath": "api/Impaye/UpdateImpaye/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "impaye",
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Impaye",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.InventaireProduitController",
+    "Method": "AddInventaireProduit",
+    "RelativePath": "api/InventaireProduit/Create-InventaireProduit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "productName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.InventaireProduitController",
+    "Method": "DeleteInventaireProduit",
+    "RelativePath": "api/InventaireProduit/Delete-InventaireProduit/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.InventaireProduitController",
+    "Method": "GetInventaireProduitById",
+    "RelativePath": "api/InventaireProduit/Get-InventaireProduit/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.InventaireProduitDTOs.InventaireProduitDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.InventaireProduitController",
+    "Method": "GetInventaireProduits",
+    "RelativePath": "api/InventaireProduit/Get-List-InventairesProduits",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.InventaireProduitDTOs.InventaireProduitDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.InventaireProduitController",
+    "Method": "UpdateInventaireProduit",
+    "RelativePath": "api/InventaireProduit/Update-InventaireProduit/{inventaireProduitId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "inventaireProduitId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "inventaireProduit",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.InventaireProduitDTOs.InventaireProduitUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.InventaireProduitController",
+    "Method": "VerifInventaireProduitByProductId",
+    "RelativePath": "api/InventaireProduit/Verif-InventaireProduit/{ProductId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.ValueTuple\u00602[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.LotController",
+    "Method": "AddLot",
+    "RelativePath": "api/Lot/add-Lot",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newLot",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.LotsDTOs.LotCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.ValueTuple\u00602[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.LotController",
+    "Method": "DeleteLot",
+    "RelativePath": "api/Lot/Delete-Lot/{lotId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lotId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.LotController",
+    "Method": "GetLots",
+    "RelativePath": "api/Lot/get-List-Lots",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.LotsDTOs.LotDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.LotController",
+    "Method": "GetLotById",
+    "RelativePath": "api/Lot/get-Lot-ByID/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.LotsDTOs.LotDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.LotController",
+    "Method": "UpdateLot",
+    "RelativePath": "api/Lot/update-Lot/{lotId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lotId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "lot",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.LotsDTOs.LotUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.MessageController",
+    "Method": "GetMessages",
+    "RelativePath": "api/Message",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.Models.Message, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.MessageController",
+    "Method": "GetMessage",
+    "RelativePath": "api/Message/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Message",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.MessageController",
+    "Method": "CreateMessage",
+    "RelativePath": "api/Message/Create-Message",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "senderId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "receiverGroupId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "messageContent",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.NotificationController",
+    "Method": "CreateNotification",
+    "RelativePath": "api/Notification/CreateNotification",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notification",
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Notification",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.NotificationController",
+    "Method": "DeleteNotification",
+    "RelativePath": "api/Notification/DeleteNotification/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.NotificationController",
+    "Method": "GetNotification",
+    "RelativePath": "api/Notification/GetNotification/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Notification",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.NotificationController",
+    "Method": "GetNotifications",
+    "RelativePath": "api/Notification/GetNotificationsList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.Models.Notification, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.NotificationController",
+    "Method": "UpdateNotification",
+    "RelativePath": "api/Notification/UpdateNotification/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "notification",
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Notification",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.PortefeuilleController",
+    "Method": "CreatePortefeuille",
+    "RelativePath": "api/Portefeuille/addPortefeuille",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "portefeuilleCreateDTO",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.PortfoliosDTOs.PortefeuilleCreateDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "listeREFsRecouvreurs",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.PortefeuilleController",
+    "Method": "DeletePortefeuille",
+    "RelativePath": "api/Portefeuille/deletePortefeuille/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.PortefeuilleController",
+    "Method": "GetPortefeuille",
+    "RelativePath": "api/Portefeuille/getPortefeuille/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Portefeuille",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.PortefeuilleController",
+    "Method": "GetPortefeuilles",
+    "RelativePath": "api/Portefeuille/getPortefeuilles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.Models.Portefeuille, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.PortefeuilleController",
+    "Method": "UpdatePortefeuille",
+    "RelativePath": "api/Portefeuille/updatePortefeuille/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "portefeuille",
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Portefeuille",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ProductController",
+    "Method": "AddProduct",
+    "RelativePath": "api/Product/add-product",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productCreateDTO",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.ProductDTOs.ProductCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ProductController",
+    "Method": "DeleteProduct",
+    "RelativePath": "api/Product/delete-product/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ProductController",
+    "Method": "DesactiverProduit",
+    "RelativePath": "api/Product/desactiver/{productId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ProductController",
+    "Method": "ExterneGetProducts",
+    "RelativePath": "api/Product/externe-get-list-products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.ProductDTOs.ProductDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ProductController",
+    "Method": "GetProducts",
+    "RelativePath": "api/Product/get-list-products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.ProductDTOs.ProductDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ProductController",
+    "Method": "GetProductByBarCode",
+    "RelativePath": "api/Product/get-product-by-barcode/{barcode}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "barcode",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.ProductDTOs.ProductDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ProductController",
+    "Method": "GetProductById",
+    "RelativePath": "api/Product/get-product-by-id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.ProductDTOs.ProductDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.ProductController",
+    "Method": "UpdateProduct",
+    "RelativePath": "api/Product/update-product/{productId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "product",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.ProductDTOs.ProductUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportController",
+    "Method": "AssignReportToPortfolio",
+    "RelativePath": "api/Rapport/AssignReporttoPortfolio/{idReport}/{idPortfolio}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idReport",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idPortfolio",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportController",
+    "Method": "CreateRapport",
+    "RelativePath": "api/Rapport/CreateRapport",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rapport",
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Rapport",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportController",
+    "Method": "DeleteRapport",
+    "RelativePath": "api/Rapport/DeleteRapport/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportController",
+    "Method": "GetRapport",
+    "RelativePath": "api/Rapport/GetRapport/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Rapport",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportController",
+    "Method": "GetRapports",
+    "RelativePath": "api/Rapport/GetRapportsList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.Models.Rapport, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportController",
+    "Method": "UpdateRapport",
+    "RelativePath": "api/Rapport/UpdateRapport/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "rapport",
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Rapport",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "CreateRapport",
+    "RelativePath": "api/RapportJournalier/add-RapportJournalier",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.RapportsJournaliersDTOs.RapportJournalierDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetDepensesParProduitParAnnee",
+    "RelativePath": "api/RapportJournalier/depenses/produits/par-annee",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetDepensesParProduitParDay",
+    "RelativePath": "api/RapportJournalier/depenses/produits/par-day",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetDepensesParProduitParJour",
+    "RelativePath": "api/RapportJournalier/depenses/produits/par-jour",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetDepensesParProduitParMois",
+    "RelativePath": "api/RapportJournalier/depenses/produits/par-mois",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetDepensesParProduitParMonth",
+    "RelativePath": "api/RapportJournalier/depenses/produits/par-month",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "listNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetDepensesParProduitParSemaine",
+    "RelativePath": "api/RapportJournalier/depenses/produits/par-semaine",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetDepensesParProduitParWeek",
+    "RelativePath": "api/RapportJournalier/depenses/produits/par-week",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "listNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetAllRapports",
+    "RelativePath": "api/RapportJournalier/get-all-RapportsJournaliers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetRapportById",
+    "RelativePath": "api/RapportJournalier/get-RapportJournalier-byId/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "MettreAJourRapportJournalier",
+    "RelativePath": "api/RapportJournalier/mettre-a-jour-Rapport-Journalier",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rapport",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.RapportsJournaliersDTOs.RapportJournalierDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetQuantitesParProduitParAnnee",
+    "RelativePath": "api/RapportJournalier/quantites/produits/par-annee",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetQuantitesParProduitParDay",
+    "RelativePath": "api/RapportJournalier/quantites/produits/par-day",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "listNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetQuantitesParProduitParJour",
+    "RelativePath": "api/RapportJournalier/quantites/produits/par-jour",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetQuantitesParProduitParMois",
+    "RelativePath": "api/RapportJournalier/quantites/produits/par-mois",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetQuantitesParProduitParMonth",
+    "RelativePath": "api/RapportJournalier/quantites/produits/par-month",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "listNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetQuantitesParProduitParSemaine",
+    "RelativePath": "api/RapportJournalier/quantites/produits/par-semaine",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetQuantitesParProduitParWeek",
+    "RelativePath": "api/RapportJournalier/quantites/produits/par-week",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "listNamesProducts",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetRecettesParEquipeParJour",
+    "RelativePath": "api/RapportJournalier/recettes/equipe/par-jour",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNumEquipes",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetRecettesParProduitParAnnee",
+    "RelativePath": "api/RapportJournalier/recettes/equipes/par-annee",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNumEquipes",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetRecettesParEquipeParMois",
+    "RelativePath": "api/RapportJournalier/recettes/equipes/par-mois",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNumEquipes",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RapportJournalierController",
+    "Method": "GetRecettesParEquipeParSemaine",
+    "RelativePath": "api/RapportJournalier/recettes/equipes/par-semaine",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "ListNumEquipes",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RoleController",
+    "Method": "AffectRoleToUser",
+    "RelativePath": "api/Role/affectroleto/user/{userId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "roleId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RoleController",
+    "Method": "GetAllowedRolesForPolicy",
+    "RelativePath": "api/Role/allowedrolesforpolicy/{policyName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "policyName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RoleController",
+    "Method": "AssignRoleToPolicy",
+    "RelativePath": "api/Role/assignroleto/policy",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "assignRoleToPolicyDto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.RoleDTOs.AssignRoleToPolicyDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RoleController",
+    "Method": "CreateRole",
+    "RelativePath": "api/Role/Create-Role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleCreateDto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.RoleDTOs.RoleCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RoleController",
+    "Method": "DeleteRole",
+    "RelativePath": "api/Role/Delete-Role/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RoleController",
+    "Method": "GetRoles",
+    "RelativePath": "api/Role/get-list-Roles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[tech_software_engineer_consultant_int_backend.DTO.RoleDTOs.RoleDto, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RoleController",
+    "Method": "GetRole",
+    "RelativePath": "api/Role/get-Role-By-Id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.RoleDTOs.RoleDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RoleController",
+    "Method": "RemoveRoleFromUser",
+    "RelativePath": "api/Role/removerolefrom/user/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "roleId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RoleController",
+    "Method": "UnassignRoleFromPolicy",
+    "RelativePath": "api/Role/unassignrolefrom/policy",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "unassignRoleFromPolicyDto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.RoleDTOs.UnassignRoleFromPolicyDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RoleController",
+    "Method": "UpdateRole",
+    "RelativePath": "api/Role/Update-Role/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "roleUpdateDto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.RoleDTOs.RoleUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.RolePolicyController",
+    "Method": "GetRolePolicies",
+    "RelativePath": "api/RolePolicy/GetRolePolicies",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[tech_software_engineer_consultant_int_backend.Models.RolePolicy, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.SIController",
+    "Method": "AddSI",
+    "RelativePath": "api/SI/add-SI",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "siCreateDTO",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.SIsDTOs.SICreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.SIController",
+    "Method": "DeleteSI",
+    "RelativePath": "api/SI/delete-SI/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.SIController",
+    "Method": "ExterneGetSIs",
+    "RelativePath": "api/SI/externe-get-list-SIs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.SIsDTOs.SIDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.SIController",
+    "Method": "GetSIs",
+    "RelativePath": "api/SI/get-list-SIs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.SIsDTOs.SIDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.SIController",
+    "Method": "GetSIById",
+    "RelativePath": "api/SI/get-SI-by-id/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.SIsDTOs.SIDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.SIController",
+    "Method": "UpdateSI",
+    "RelativePath": "api/SI/update-SI/{SIId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "SIId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "si",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.SIsDTOs.SIUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.TransactionController",
+    "Method": "AddTransaction",
+    "RelativePath": "api/Transaction/addTransaction",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "transactionCreateDto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.TransactionsDTOs.TransactionCreateDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "ReferenceCommande",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.ValueTuple\u00602[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.TransactionController",
+    "Method": "DeleteTransaction",
+    "RelativePath": "api/Transaction/deleteTransactionbyId/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.TransactionController",
+    "Method": "GetTransactionById",
+    "RelativePath": "api/Transaction/getTransactionbyId/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.TransactionsDTOs.TransactionsDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.TransactionController",
+    "Method": "GetTransactionsByRefCommande",
+    "RelativePath": "api/Transaction/getTransactionbyRef/{ReferenceCommande}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ReferenceCommande",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.TransactionsDTOs.TransactionsDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.TransactionController",
+    "Method": "GetTransactions",
+    "RelativePath": "api/Transaction/GetTransactions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.DTO.TransactionsDTOs.TransactionsDTO, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.TransactionController",
+    "Method": "UpdateTransaction",
+    "RelativePath": "api/Transaction/updateTransaction/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TransactionId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Transaction",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.TransactionsDTOs.TransactionsUpdateDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.ValueTuple\u00602[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.UserController",
+    "Method": "CreateUser",
+    "RelativePath": "api/User/addUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userCreateDTO",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.UsersDTOs.UserCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.UserController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/User/deleteUser/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.UserController",
+    "Method": "GetUser",
+    "RelativePath": "api/User/getUser/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.UsersDTOs.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.UserController",
+    "Method": "GetUsers",
+    "RelativePath": "api/User/GetUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[tech_software_engineer_consultant_int_backend.DTO.UsersDTOs.UserDto, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.UserController",
+    "Method": "ModifierMotDePasse",
+    "RelativePath": "api/User/ModifierMotDePasse/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.UserController",
+    "Method": "UpdatePasswordUser",
+    "RelativePath": "api/User/updatePasswordUser/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userUpdateMPDto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.UsersDTOs.UserUpdateMPDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "ancienMP",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.UserController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/User/updateUser/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userUpdateDTO",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.UsersDTOs.UserUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.MessageController",
+    "Method": "DeleteMessage",
+    "RelativePath": "Delete-Message/{idMessage}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idMessage",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.MessageController",
+    "Method": "UpdateMessage",
+    "RelativePath": "Update-Message/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "message",
+        "Type": "tech_software_engineer_consultant_int_backend.Models.Message",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

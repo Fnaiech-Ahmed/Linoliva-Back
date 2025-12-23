@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\tech-software-engineer-consultant-int-backend.props" />
+</Project>

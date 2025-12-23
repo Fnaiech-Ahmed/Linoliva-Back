@@ -1,0 +1,6 @@
+@tech_software_engineer_consultant_int_backend_HostAddress = http://localhost:5233
+
+GET {{tech_software_engineer_consultant_int_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

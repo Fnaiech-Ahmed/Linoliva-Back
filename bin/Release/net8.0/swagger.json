@@ -1,0 +1,7089 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Abonnement/create": {
+      "post": {
+        "tags": [
+          "Abonnement"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateAbonnementDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Abonnement/assign": {
+      "post": {
+        "tags": [
+          "Abonnement"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AssignActivationDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Abonnement/{id}": {
+      "get": {
+        "tags": [
+          "Abonnement"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Abonnement"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Abonnement/sell/{id}": {
+      "put": {
+        "tags": [
+          "Abonnement"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AbonnementSellDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Activation/create": {
+      "post": {
+        "tags": [
+          "Activation"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateActivationDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Activation/assign": {
+      "post": {
+        "tags": [
+          "Activation"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AssignActivationDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Activation/register-device/{activationCode}": {
+      "post": {
+        "tags": [
+          "Activation"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "activationCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ActivationDeviceDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Activation/validate/{activationCode}/{deviceId}": {
+      "get": {
+        "tags": [
+          "Activation"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "activationCode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "deviceId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "phone",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Activation/{reference}": {
+      "get": {
+        "tags": [
+          "Activation"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reference",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/validate": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/BonDeLivraison/Create-BonDeLivraison": {
+      "post": {
+        "tags": [
+          "BonDeLivraison"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BLCreateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/BonDeLivraison/Get-List-BonDeLivraisons": {
+      "get": {
+        "tags": [
+          "BonDeLivraison"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BLDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/BonDeLivraison/get-Bon-De-Livraison-ID/{id}": {
+      "get": {
+        "tags": [
+          "BonDeLivraison"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BLDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/BonDeLivraison/get-Bon-De-Livraison-Ref/{RefBL}": {
+      "get": {
+        "tags": [
+          "BonDeLivraison"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "RefBL",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BLDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/BonDeLivraison/update-BonDeLivraison/{id}": {
+      "put": {
+        "tags": [
+          "BonDeLivraison"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "bonDeLivraisonId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BLUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/BonDeLivraison/delete-BonDeLivraison/{id}": {
+      "delete": {
+        "tags": [
+          "BonDeLivraison"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/BonDeSortie/Create-Bon-De-Sortie": {
+      "post": {
+        "tags": [
+          "BonDeSortie"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BonDeSortieCreateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/BonDeSortie/Get-List-Bons-De-Sortie": {
+      "get": {
+        "tags": [
+          "BonDeSortie"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BonDeSortieDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/BonDeSortie/get-Bon-De-Sortie-ByID/{id}": {
+      "get": {
+        "tags": [
+          "BonDeSortie"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BonDeSortieDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/BonDeSortie/get-Bon-De-Sortie-ByRef/{reference}": {
+      "get": {
+        "tags": [
+          "BonDeSortie"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reference",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BonDeSortieDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/BonDeSortie/update-BonDeSortie/{id}": {
+      "put": {
+        "tags": [
+          "BonDeSortie"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "bonDeSortieId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BonDeSortieUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/BonDeSortie/delete-BonDeSortie/{id}": {
+      "delete": {
+        "tags": [
+          "BonDeSortie"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/ChatHub/Add-Group": {
+      "post": {
+        "tags": [
+          "ChatHub"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "groupName",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ChatHub/send-message-to-new-group": {
+      "post": {
+        "tags": [
+          "ChatHub"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "NewGroupName",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "messageContent",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ChatHub/send-message-to-group": {
+      "post": {
+        "tags": [
+          "ChatHub"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "receiverGroupId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "messageContent",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ChatHub/join-group": {
+      "post": {
+        "tags": [
+          "ChatHub"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "groupId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ChatHub/leave-group": {
+      "post": {
+        "tags": [
+          "ChatHub"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "groupId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ChatHub/get-messages": {
+      "get": {
+        "tags": [
+          "ChatHub"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "groupId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Commande/Create-Commande": {
+      "post": {
+        "tags": [
+          "Commande"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ListTransactions",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/TransactionCreateDto"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CommandeCreateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Commande/Get-List-Commandes": {
+      "get": {
+        "tags": [
+          "Commande"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CommandeDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Commande/get-Commande-ByID/{id}": {
+      "get": {
+        "tags": [
+          "Commande"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CommandeDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/Commande/get-Total-Commande-ByID/{id}": {
+      "get": {
+        "tags": [
+          "Commande"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DecimalDecimalValueTuple"
+            }
+          }
+        }
+      }
+    },
+    "/api/Commande/update-Commande/{commandeId}": {
+      "put": {
+        "tags": [
+          "Commande"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "commandeId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "ListTransactions",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Transactions"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CommandeUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Commande/get-Commande-ByRef/{reference}": {
+      "get": {
+        "tags": [
+          "Commande"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "commandeRef",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "reference",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CommandeDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/Commande/delete-Commande/{id}": {
+      "delete": {
+        "tags": [
+          "Commande"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BooleanStringValueTuple"
+            }
+          }
+        }
+      }
+    },
+    "/api/Contact": {
+      "post": {
+        "tags": [
+          "Contact"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ContactMessage"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dossier/GetDossiers": {
+      "get": {
+        "tags": [
+          "Dossier"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Dossier"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dossier/GetDossier/{id}": {
+      "get": {
+        "tags": [
+          "Dossier"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Dossier"
+            }
+          }
+        }
+      }
+    },
+    "/api/Dossier/CreateDossier": {
+      "post": {
+        "tags": [
+          "Dossier"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Dossier"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/Dossier/UpdateDossier/{id}": {
+      "put": {
+        "tags": [
+          "Dossier"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Dossier"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dossier/affectFoldertoPortfolio/{idFolder}/{idPortfolio}": {
+      "put": {
+        "tags": [
+          "Dossier"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idFolder",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "path",
+            "name": "idPortfolio",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Dossier/DeleteDossier/{id}": {
+      "delete": {
+        "tags": [
+          "Dossier"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Echeance/Get-List-Echeances": {
+      "get": {
+        "tags": [
+          "Echeance"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EcheanceDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Echeance/getEcheance/{id}": {
+      "get": {
+        "tags": [
+          "Echeance"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/EcheanceDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/Echeance/Create-Echeance": {
+      "post": {
+        "tags": [
+          "Echeance"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateEcheanceDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Echeance/update-Echeance/{id}": {
+      "put": {
+        "tags": [
+          "Echeance"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateEcheanceDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Echeance/delete-Echeance/{id}": {
+      "delete": {
+        "tags": [
+          "Echeance"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Facture/Create-Facture": {
+      "post": {
+        "tags": [
+          "Facture"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/FactureCreateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Facture/Get-List-Factures": {
+      "get": {
+        "tags": [
+          "Facture"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FactureDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Facture/get-Facture-ID/{id}": {
+      "get": {
+        "tags": [
+          "Facture"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FactureDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/Facture/get-Facture-Ref/{RefFacture}": {
+      "get": {
+        "tags": [
+          "Facture"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "RefFacture",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Facture/update-Facture/{id}": {
+      "put": {
+        "tags": [
+          "Facture"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "factureId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/FactureUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Facture/delete-Facture/{id}": {
+      "delete": {
+        "tags": [
+          "Facture"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Impaye/GetImpayesList": {
+      "get": {
+        "tags": [
+          "Impaye"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Impaye"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Impaye/GetImpaye/{id}": {
+      "get": {
+        "tags": [
+          "Impaye"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Impaye"
+            }
+          }
+        }
+      }
+    },
+    "/api/Impaye/CreateImpaye/{idEcheance}": {
+      "post": {
+        "tags": [
+          "Impaye"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idEcheance",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ImpayeCreateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/Impaye/UpdateImpaye/{id}": {
+      "put": {
+        "tags": [
+          "Impaye"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Impaye"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Impaye/AffecterImpayeAuDossier/{idImpaye}/{idDossier}": {
+      "put": {
+        "tags": [
+          "Impaye"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idImpaye",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "path",
+            "name": "idDossier",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Impaye/DeleteImpaye/{id}": {
+      "delete": {
+        "tags": [
+          "Impaye"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InventaireProduit/Create-InventaireProduit": {
+      "post": {
+        "tags": [
+          "InventaireProduit"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "productId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "productName",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "quantity",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InventaireProduit/Get-List-InventairesProduits": {
+      "get": {
+        "tags": [
+          "InventaireProduit"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InventaireProduitDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InventaireProduit/Get-InventaireProduit/{id}": {
+      "get": {
+        "tags": [
+          "InventaireProduit"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InventaireProduitDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/InventaireProduit/Verif-InventaireProduit/{ProductId}": {
+      "get": {
+        "tags": [
+          "InventaireProduit"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BooleanInt32ValueTuple"
+            }
+          }
+        }
+      }
+    },
+    "/api/InventaireProduit/Update-InventaireProduit/{inventaireProduitId}": {
+      "put": {
+        "tags": [
+          "InventaireProduit"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "inventaireProduitId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/InventaireProduitUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InventaireProduit/Delete-InventaireProduit/{id}": {
+      "delete": {
+        "tags": [
+          "InventaireProduit"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Lot/add-Lot": {
+      "post": {
+        "tags": [
+          "Lot"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LotCreateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BooleanInt32ValueTuple"
+            }
+          }
+        }
+      }
+    },
+    "/api/Lot/get-List-Lots": {
+      "get": {
+        "tags": [
+          "Lot"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LotDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Lot/get-Lot-ByID/{id}": {
+      "get": {
+        "tags": [
+          "Lot"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LotDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/Lot/update-Lot/{lotId}": {
+      "put": {
+        "tags": [
+          "Lot"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lotId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LotUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/Lot/Delete-Lot/{lotId}": {
+      "delete": {
+        "tags": [
+          "Lot"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lotId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/Message": {
+      "get": {
+        "tags": [
+          "Message"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Message"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Message/{id}": {
+      "get": {
+        "tags": [
+          "Message"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        }
+      }
+    },
+    "/api/Message/Create-Message": {
+      "post": {
+        "tags": [
+          "Message"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "senderId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "receiverGroupId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "messageContent",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/Update-Message/{id}": {
+      "put": {
+        "tags": [
+          "Message"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Delete-Message/{idMessage}": {
+      "delete": {
+        "tags": [
+          "Message"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idMessage",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notification/GetNotificationsList": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Notification"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Notification/GetNotification/{id}": {
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
+          }
+        }
+      }
+    },
+    "/api/Notification/CreateNotification": {
+      "post": {
+        "tags": [
+          "Notification"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/Notification/UpdateNotification/{id}": {
+      "put": {
+        "tags": [
+          "Notification"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Notification"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notification/DeleteNotification/{id}": {
+      "delete": {
+        "tags": [
+          "Notification"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Portefeuille/getPortefeuilles": {
+      "get": {
+        "tags": [
+          "Portefeuille"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Portefeuille"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Portefeuille/getPortefeuille/{id}": {
+      "get": {
+        "tags": [
+          "Portefeuille"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Portefeuille"
+            }
+          }
+        }
+      }
+    },
+    "/api/Portefeuille/addPortefeuille": {
+      "post": {
+        "tags": [
+          "Portefeuille"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "listeREFsRecouvreurs",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PortefeuilleCreateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/Portefeuille/updatePortefeuille/{id}": {
+      "put": {
+        "tags": [
+          "Portefeuille"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Portefeuille"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Portefeuille/deletePortefeuille/{id}": {
+      "delete": {
+        "tags": [
+          "Portefeuille"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/add-product": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ProductCreateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/Product/get-list-products": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProductDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Product/externe-get-list-products": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProductDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Product/get-product-by-id/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProductDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/Product/get-product-by-barcode/{barcode}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "barcode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProductDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/Product/update-product/{productId}": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ProductUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/Product/delete-product/{id}": {
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/Product/desactiver/{productId}": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Rapport/GetRapportsList": {
+      "get": {
+        "tags": [
+          "Rapport"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Rapport"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Rapport/GetRapport/{id}": {
+      "get": {
+        "tags": [
+          "Rapport"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Rapport"
+            }
+          }
+        }
+      }
+    },
+    "/api/Rapport/CreateRapport": {
+      "post": {
+        "tags": [
+          "Rapport"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Rapport"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/Rapport/UpdateRapport/{id}": {
+      "put": {
+        "tags": [
+          "Rapport"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Rapport"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Rapport/AssignReporttoPortfolio/{idReport}/{idPortfolio}": {
+      "put": {
+        "tags": [
+          "Rapport"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idReport",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "path",
+            "name": "idPortfolio",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Rapport/DeleteRapport/{id}": {
+      "delete": {
+        "tags": [
+          "Rapport"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/add-RapportJournalier": {
+      "post": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RapportJournalierDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/mettre-a-jour-Rapport-Journalier": {
+      "put": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RapportJournalierDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/get-RapportJournalier-byId/{id}": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/get-all-RapportsJournaliers": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/depenses/produits/par-jour": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNamesProducts",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/depenses/produits/par-day": {
+      "post": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/depenses/produits/par-semaine": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNamesProducts",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/depenses/produits/par-week": {
+      "post": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/depenses/produits/par-mois": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNamesProducts",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/depenses/produits/par-month": {
+      "post": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/depenses/produits/par-annee": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNamesProducts",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/recettes/equipe/par-jour": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNumEquipes",
+            "type": "array",
+            "items": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/recettes/equipes/par-semaine": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNumEquipes",
+            "type": "array",
+            "items": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/recettes/equipes/par-mois": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNumEquipes",
+            "type": "array",
+            "items": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/recettes/equipes/par-annee": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNumEquipes",
+            "type": "array",
+            "items": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/quantites/produits/par-jour": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNamesProducts",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/quantites/produits/par-day": {
+      "post": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/quantites/produits/par-semaine": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNamesProducts",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/quantites/produits/par-week": {
+      "post": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/quantites/produits/par-mois": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNamesProducts",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/quantites/produits/par-month": {
+      "post": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RapportJournalier/quantites/produits/par-annee": {
+      "get": {
+        "tags": [
+          "RapportJournalier"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "ListNamesProducts",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Role/get-list-Roles": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RoleDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Role/get-Role-By-Id/{id}": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RoleDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/Role/Create-Role": {
+      "post": {
+        "tags": [
+          "Role"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RoleCreateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/Role/Update-Role/{id}": {
+      "put": {
+        "tags": [
+          "Role"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RoleUpdateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Role/Delete-Role/{id}": {
+      "delete": {
+        "tags": [
+          "Role"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Role/affectroleto/user/{userId}": {
+      "post": {
+        "tags": [
+          "Role"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Role/removerolefrom/user/{userId}": {
+      "delete": {
+        "tags": [
+          "Role"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Role/allowedrolesforpolicy/{policyName}": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "policyName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Role/assignroleto/policy": {
+      "post": {
+        "tags": [
+          "Role"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AssignRoleToPolicyDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Role/unassignrolefrom/policy": {
+      "delete": {
+        "tags": [
+          "Role"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UnassignRoleFromPolicyDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RolePolicy/GetRolePolicies": {
+      "get": {
+        "tags": [
+          "RolePolicy"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RolePolicy"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SI/add-SI": {
+      "post": {
+        "tags": [
+          "SI"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/SICreateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/SI/get-list-SIs": {
+      "get": {
+        "tags": [
+          "SI"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SIDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SI/externe-get-list-SIs": {
+      "get": {
+        "tags": [
+          "SI"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SIDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SI/get-SI-by-id/{id}": {
+      "get": {
+        "tags": [
+          "SI"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SIDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/SI/update-SI/{SIId}": {
+      "put": {
+        "tags": [
+          "SI"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "SIId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/SIUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/SI/delete-SI/{id}": {
+      "delete": {
+        "tags": [
+          "SI"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/Transaction/addTransaction": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ReferenceCommande",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/TransactionCreateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BooleanInt32ValueTuple"
+            }
+          }
+        }
+      }
+    },
+    "/api/Transaction/GetTransactions": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TransactionsDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Transaction/getTransactionbyRef/{ReferenceCommande}": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ReferenceCommande",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TransactionsDTO"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Transaction/getTransactionbyId/{id}": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TransactionsDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/Transaction/updateTransaction/{id}": {
+      "put": {
+        "tags": [
+          "Transaction"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "TransactionId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/TransactionsUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BooleanInt32ValueTuple"
+            }
+          }
+        }
+      }
+    },
+    "/api/Transaction/deleteTransactionbyId/{id}": {
+      "delete": {
+        "tags": [
+          "Transaction"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/User/GetUsers": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/getUser/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/User/addUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserCreateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/User/updateUser/{id}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserUpdateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/ModifierMotDePasse/{id}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/User/updatePasswordUser/{id}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "ancienMP",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserUpdateMPDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/deleteUser/{id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Abonnement": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "activationCodeReference": {
+          "type": "string"
+        },
+        "activationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "activationCode": {
+          "type": "string"
+        },
+        "businessSector": {
+          "type": "string"
+        },
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productReference": {
+          "type": "string"
+        },
+        "clientRef": {
+          "type": "string"
+        },
+        "assignedToEmail": {
+          "type": "string"
+        },
+        "assignedToPhone": {
+          "type": "string"
+        },
+        "isAssigned": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "maxUsersAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxDevicesAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "activationDevices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ActivationDevice"
+          }
+        },
+        "subscriptionType": {
+          "type": "string"
+        },
+        "isRecurring": {
+          "type": "boolean"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "paymentMethod": {
+          "type": "string"
+        },
+        "renewalDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "renewalAttempts": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "cancelledDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "additionalProperties": false
+    },
+    "AbonnementSellDTO": {
+      "type": "object",
+      "properties": {
+        "productReference": {
+          "type": "string"
+        },
+        "clientRef": {
+          "type": "string"
+        },
+        "activationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isRecurring": {
+          "type": "boolean"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "paymentMethod": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ActivationDevice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "codeActivationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "codeActivation": {
+          "$ref": "#/definitions/CodeActivation"
+        },
+        "deviceId": {
+          "type": "string"
+        },
+        "deviceName": {
+          "type": "string"
+        },
+        "os": {
+          "type": "string"
+        },
+        "appVersion": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "activationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "lastUsage": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ActivationDeviceDTO": {
+      "type": "object",
+      "properties": {
+        "deviceId": {
+          "type": "string"
+        },
+        "deviceName": {
+          "type": "string"
+        },
+        "os": {
+          "type": "string"
+        },
+        "appVersion": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "AssignActivationDTO": {
+      "type": "object",
+      "properties": {
+        "activationCodeReference": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "assignedBy": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "AssignRoleToPolicyDto": {
+      "type": "object",
+      "properties": {
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "policyId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BLCreateDTO": {
+      "type": "object",
+      "properties": {
+        "titreClient": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomClient": {
+          "type": "string"
+        },
+        "adresseClient": {
+          "type": "string"
+        },
+        "mfClient": {
+          "type": "string"
+        },
+        "gsmClient": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "proprietaireId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "commandes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Commande"
+          }
+        },
+        "remiseBL": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BLDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "titreClient": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomClient": {
+          "type": "string"
+        },
+        "adresseClient": {
+          "type": "string"
+        },
+        "mfClient": {
+          "type": "string"
+        },
+        "gsmClient": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "proprietaireId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "commandes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Commande"
+          }
+        },
+        "montantTotalHTBL": {
+          "format": "double",
+          "type": "number"
+        },
+        "remiseBL": {
+          "format": "double",
+          "type": "number"
+        },
+        "netHT": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "montantTotalTTCBL": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BLUpdateDTO": {
+      "type": "object",
+      "properties": {
+        "titreClient": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomClient": {
+          "type": "string"
+        },
+        "adresseClient": {
+          "type": "string"
+        },
+        "mfClient": {
+          "type": "string"
+        },
+        "gsmClient": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "commandes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Commande"
+          }
+        },
+        "remiseBL": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BonDeLivraison": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "titreClient": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomClient": {
+          "type": "string"
+        },
+        "adresseClient": {
+          "type": "string"
+        },
+        "mfClient": {
+          "type": "string"
+        },
+        "gsmClient": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "proprietaireId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "commandesJson": {
+          "type": "string"
+        },
+        "commandes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Commande"
+          }
+        },
+        "montantTotalHTBL": {
+          "format": "double",
+          "type": "number"
+        },
+        "remiseBL": {
+          "format": "double",
+          "type": "number"
+        },
+        "netHT": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "montantTotalTTCBL": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BonDeSortieCreateDTO": {
+      "type": "object",
+      "properties": {
+        "listeFactures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Facture"
+          }
+        },
+        "matriculeDeVoiture": {
+          "type": "string"
+        },
+        "dateDebutCirculation": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateFinCirculation": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BonDeSortieDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "referenceBS": {
+          "type": "string"
+        },
+        "listeFactures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Facture"
+          }
+        },
+        "matriculeDeVoiture": {
+          "type": "string"
+        },
+        "dateDebutCirculation": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateFinCirculation": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BonDeSortieUpdateDTO": {
+      "type": "object",
+      "properties": {
+        "listeFactures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Facture"
+          }
+        },
+        "matriculeDeVoiture": {
+          "type": "string"
+        },
+        "dateDebutCirculation": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateFinCirculation": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BooleanInt32ValueTuple": {
+      "type": "object",
+      "additionalProperties": false
+    },
+    "BooleanStringValueTuple": {
+      "type": "object",
+      "additionalProperties": false
+    },
+    "CodeActivation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "activationCodeReference": {
+          "type": "string"
+        },
+        "activationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "activationCode": {
+          "type": "string"
+        },
+        "businessSector": {
+          "type": "string"
+        },
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productReference": {
+          "type": "string"
+        },
+        "clientRef": {
+          "type": "string"
+        },
+        "assignedToEmail": {
+          "type": "string"
+        },
+        "assignedToPhone": {
+          "type": "string"
+        },
+        "isAssigned": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "maxUsersAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxDevicesAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "activationDevices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ActivationDevice"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "Commande": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "referenceCommande": {
+          "type": "string"
+        },
+        "nomVendeur": {
+          "type": "string"
+        },
+        "adresseVendeur": {
+          "type": "string"
+        },
+        "mfVendeur": {
+          "type": "string"
+        },
+        "gsmVendeur": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "proprietaireId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "titreAcheteur": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomAcheteur": {
+          "type": "string"
+        },
+        "adresseAcheteur": {
+          "type": "string"
+        },
+        "mfAcheteur": {
+          "type": "string"
+        },
+        "gsmAcheteur": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "listIdsTransactions": {
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "montantTotalHT": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "montantTotalTTC": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CommandeCreateDTO": {
+      "type": "object",
+      "properties": {
+        "nomVendeur": {
+          "type": "string"
+        },
+        "adresseVendeur": {
+          "type": "string"
+        },
+        "mfVendeur": {
+          "type": "string"
+        },
+        "gsmVendeur": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "titreAcheteur": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomAcheteur": {
+          "type": "string"
+        },
+        "adresseAcheteur": {
+          "type": "string"
+        },
+        "mfAcheteur": {
+          "type": "string"
+        },
+        "gsmAcheteur": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "proprietaireId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CommandeDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "referenceCommande": {
+          "type": "string"
+        },
+        "nomVendeur": {
+          "type": "string"
+        },
+        "adresseVendeur": {
+          "type": "string"
+        },
+        "mfVendeur": {
+          "type": "string"
+        },
+        "gsmVendeur": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "titreAcheteur": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomAcheteur": {
+          "type": "string"
+        },
+        "adresseAcheteur": {
+          "type": "string"
+        },
+        "mfAcheteur": {
+          "type": "string"
+        },
+        "gsmAcheteur": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "proprietaireId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "listIdsTransactions": {
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "montantTotalHT": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "montantTotalTTC": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CommandeUpdateDTO": {
+      "type": "object",
+      "properties": {
+        "nomVendeur": {
+          "type": "string"
+        },
+        "adresseVendeur": {
+          "type": "string"
+        },
+        "mfVendeur": {
+          "type": "string"
+        },
+        "gsmVendeur": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "titreAcheteur": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomAcheteur": {
+          "type": "string"
+        },
+        "adresseAcheteur": {
+          "type": "string"
+        },
+        "mfAcheteur": {
+          "type": "string"
+        },
+        "gsmAcheteur": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "proprietaireId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ContactMessage": {
+      "type": "object",
+      "properties": {
+        "nom": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "sujet": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateAbonnementDTO": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxUsersAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxDevicesAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "subscriptionType": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateActivationDTO": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "businessSector": {
+          "type": "string"
+        },
+        "maxUsersAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxDevicesAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateEcheanceDto": {
+      "required": [
+        "dateEcheance",
+        "description",
+        "montant",
+        "ref"
+      ],
+      "type": "object",
+      "properties": {
+        "ref": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "dateEcheance": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "montant": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "DecimalDecimalValueTuple": {
+      "type": "object",
+      "additionalProperties": false
+    },
+    "DepenseDto": {
+      "type": "object",
+      "properties": {
+        "montant": {
+          "format": "double",
+          "type": "number"
+        },
+        "dateTransaction": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "unitPrice": {
+          "format": "double",
+          "type": "number"
+        },
+        "quantity": {
+          "format": "double",
+          "type": "number"
+        },
+        "rapportJournalierId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Dossier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "portefeuilleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "portefeuille": {
+          "$ref": "#/definitions/Portefeuille"
+        },
+        "listeImpayes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Impaye"
+          }
+        },
+        "listeAbonnements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Abonnement"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "Echeance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "dateEcheance": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "montant": {
+          "format": "double",
+          "type": "number"
+        },
+        "impayeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "impaye": {
+          "$ref": "#/definitions/Impaye"
+        }
+      },
+      "additionalProperties": false
+    },
+    "EcheanceDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "dateEcheance": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "montant": {
+          "format": "double",
+          "type": "number"
+        },
+        "impayeId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Facture": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "referenceFacture": {
+          "type": "string"
+        },
+        "titreClient": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomClient": {
+          "type": "string"
+        },
+        "adresseClient": {
+          "type": "string"
+        },
+        "mfClient": {
+          "type": "string"
+        },
+        "gsmClient": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "proprietaireId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "listeBL": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BonDeLivraison"
+          }
+        },
+        "dateEmission": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateMiseAJour": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "montantHTFacture": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "remise": {
+          "format": "double",
+          "type": "number"
+        },
+        "montantTTCFacture": {
+          "format": "double",
+          "type": "number"
+        },
+        "listeBLSerialized": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "FactureCreateDTO": {
+      "type": "object",
+      "properties": {
+        "titreClient": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomClient": {
+          "type": "string"
+        },
+        "adresseClient": {
+          "type": "string"
+        },
+        "mfClient": {
+          "type": "string"
+        },
+        "gsmClient": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "proprietaireId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "listeRefsBLs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dateEmission": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateMiseAJour": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "remise": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "FactureDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "referenceFacture": {
+          "type": "string"
+        },
+        "titreClient": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomClient": {
+          "type": "string"
+        },
+        "adresseClient": {
+          "type": "string"
+        },
+        "mfClient": {
+          "type": "string"
+        },
+        "gsmClient": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "proprietaireId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "listeBL": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BonDeLivraison"
+          }
+        },
+        "dateEmission": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateMiseAJour": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "montantHTFacture": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "remise": {
+          "format": "double",
+          "type": "number"
+        },
+        "montantTTCFacture": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "FactureUpdateDTO": {
+      "type": "object",
+      "properties": {
+        "titreClient": {
+          "$ref": "#/definitions/Titre"
+        },
+        "nomClient": {
+          "type": "string"
+        },
+        "adresseClient": {
+          "type": "string"
+        },
+        "mfClient": {
+          "type": "string"
+        },
+        "gsmClient": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "listeRefsBLs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dateEmission": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "dateMiseAJour": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "remise": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Group": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "userGroupAssociations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserGroupAssociation"
+          }
+        },
+        "messagesList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Message"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "Impaye": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "refClt": {
+          "type": "string"
+        },
+        "nom": {
+          "type": "string"
+        },
+        "prenom": {
+          "type": "string"
+        },
+        "createdate": {
+          "type": "string"
+        },
+        "datetombe": {
+          "type": "string"
+        },
+        "retard": {
+          "type": "string"
+        },
+        "statut": {
+          "type": "string"
+        },
+        "priorite": {
+          "type": "string"
+        },
+        "nbreImpaye": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "montant": {
+          "type": "string"
+        },
+        "dossierId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dossier": {
+          "$ref": "#/definitions/Dossier"
+        },
+        "echeanceId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "echeance": {
+          "$ref": "#/definitions/Echeance"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ImpayeCreateDTO": {
+      "type": "object",
+      "properties": {
+        "refClt": {
+          "type": "string"
+        },
+        "nom": {
+          "type": "string"
+        },
+        "prenom": {
+          "type": "string"
+        },
+        "createdate": {
+          "type": "string"
+        },
+        "datetombe": {
+          "type": "string"
+        },
+        "retard": {
+          "type": "string"
+        },
+        "statut": {
+          "type": "string"
+        },
+        "priorite": {
+          "type": "string"
+        },
+        "montant": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "InventaireProduitDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "InventaireProduitUpdateDTO": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productName": {
+          "type": "string"
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Licence": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "activationCodeReference": {
+          "type": "string"
+        },
+        "activationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "activationCode": {
+          "type": "string"
+        },
+        "businessSector": {
+          "type": "string"
+        },
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productReference": {
+          "type": "string"
+        },
+        "clientRef": {
+          "type": "string"
+        },
+        "assignedToEmail": {
+          "type": "string"
+        },
+        "assignedToPhone": {
+          "type": "string"
+        },
+        "isAssigned": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "maxUsersAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxDevicesAllowed": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "activationDevices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ActivationDevice"
+          }
+        },
+        "licenceType": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "activationAttempts": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "activatedBy": {
+          "type": "string"
+        },
+        "deviceId": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LoginRequest": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LotCreateDTO": {
+      "type": "object",
+      "properties": {
+        "reference": {
+          "type": "string"
+        },
+        "idProduit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "quantite": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LotDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "idProduit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "quantite": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LotUpdateDTO": {
+      "type": "object",
+      "properties": {
+        "reference": {
+          "type": "string"
+        },
+        "idProduit": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "quantite": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Message": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "content": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "senderId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sender": {
+          "$ref": "#/definitions/User"
+        },
+        "receiverGroupId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "receiverGroup": {
+          "$ref": "#/definitions/Group"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Notification": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "dateNotif": {
+          "type": "string"
+        },
+        "bodyNotif": {
+          "type": "string"
+        },
+        "statutNotif": {
+          "type": "string"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Portefeuille": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "nom": {
+          "type": "string"
+        },
+        "nbrDossiers": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "listeDossiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Dossier"
+          }
+        },
+        "listeRapports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Rapport"
+          }
+        },
+        "userPortefeuilleAssociations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserPortefeuilleAssociation"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "PortefeuilleCreateDTO": {
+      "type": "object",
+      "properties": {
+        "nom": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ProductCreateDTO": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "format": "double",
+          "type": "number"
+        },
+        "barcode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "adresse_Image_Product": {
+          "type": "string"
+        },
+        "family": {
+          "type": "string"
+        },
+        "subFamily": {
+          "type": "string"
+        },
+        "reference_SubFamily": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "sub_Category": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ProductDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "format": "double",
+          "type": "number"
+        },
+        "barcode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "adresse_Image_Product": {
+          "type": "string"
+        },
+        "family": {
+          "type": "string"
+        },
+        "subFamily": {
+          "type": "string"
+        },
+        "reference_SubFamily": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "sub_Category": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ProductUpdateDTO": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "format": "double",
+          "type": "number"
+        },
+        "barcode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "adresse_Image_Product": {
+          "type": "string"
+        },
+        "family": {
+          "type": "string"
+        },
+        "subFamily": {
+          "type": "string"
+        },
+        "reference_SubFamily": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "sub_Category": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Rapport": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "portefeuilleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "portefeuille": {
+          "$ref": "#/definitions/Portefeuille"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RapportJournalierDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "recettes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RecetteDto"
+          }
+        },
+        "depenses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DepenseDto"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "RecetteDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "montant": {
+          "format": "double",
+          "type": "number"
+        },
+        "posteRecetteId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dateTransaction": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "rapportJournalierId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "normalizedName": {
+          "type": "string"
+        },
+        "concurrencyStamp": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "rolePolicyRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RolePolicyRole"
+          }
+        },
+        "userRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserRole"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "RoleCreateDto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RoleDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RolePolicy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "policyName": {
+          "type": "string"
+        },
+        "rolePolicyRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RolePolicyRole"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "RolePolicyRole": {
+      "type": "object",
+      "properties": {
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "role": {
+          "$ref": "#/definitions/Role"
+        },
+        "rolePolicyId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "rolePolicy": {
+          "$ref": "#/definitions/RolePolicy"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RoleUpdateDto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SICreateDTO": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "adresse_Image_SI": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SIDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "adresse_Image_SI": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SIUpdateDTO": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "adresse_Image_SI": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Titre": {
+      "format": "int32",
+      "enum": [
+        0,
+        1
+      ],
+      "type": "integer"
+    },
+    "TransactionCreateDto": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "nomProduit": {
+          "type": "string"
+        },
+        "prixUnitaire": {
+          "format": "double",
+          "type": "number"
+        },
+        "quantityEntered": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ptht": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "pttc": {
+          "format": "double",
+          "type": "number"
+        },
+        "typeTransaction": {
+          "$ref": "#/definitions/TypeTransaction"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Transactions": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "referenceCommande": {
+          "type": "string"
+        },
+        "referenceLot": {
+          "type": "string"
+        },
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "nomProduit": {
+          "type": "string"
+        },
+        "prixUnitaire": {
+          "format": "double",
+          "type": "number"
+        },
+        "quantityEntered": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ptht": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "pttc": {
+          "format": "double",
+          "type": "number"
+        },
+        "typeTransaction": {
+          "$ref": "#/definitions/TypeTransaction"
+        },
+        "remainingQuantity": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "TransactionsDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "referenceCommande": {
+          "type": "string"
+        },
+        "referenceLot": {
+          "type": "string"
+        },
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "nomProduit": {
+          "type": "string"
+        },
+        "prixUnitaire": {
+          "format": "double",
+          "type": "number"
+        },
+        "quantityEntered": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ptht": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "pttc": {
+          "format": "double",
+          "type": "number"
+        },
+        "typeTransaction": {
+          "$ref": "#/definitions/TypeTransaction"
+        },
+        "remainingQuantity": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "TransactionsUpdateDTO": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "nomProduit": {
+          "type": "string"
+        },
+        "prixUnitaire": {
+          "format": "double",
+          "type": "number"
+        },
+        "quantityEntered": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ptht": {
+          "format": "double",
+          "type": "number"
+        },
+        "tva": {
+          "format": "double",
+          "type": "number"
+        },
+        "pttc": {
+          "format": "double",
+          "type": "number"
+        },
+        "typeTransaction": {
+          "$ref": "#/definitions/TypeTransaction"
+        }
+      },
+      "additionalProperties": false
+    },
+    "TypeTransaction": {
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "type": "integer"
+    },
+    "UnassignRoleFromPolicyDto": {
+      "type": "object",
+      "properties": {
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "policyId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateEcheanceDto": {
+      "required": [
+        "dateEcheance",
+        "description",
+        "montant",
+        "ref"
+      ],
+      "type": "object",
+      "properties": {
+        "ref": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "dateEcheance": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "montant": {
+          "format": "double",
+          "type": "number"
+        },
+        "impayeId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "normalizedUserName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "normalizedEmail": {
+          "type": "string"
+        },
+        "emailConfirmed": {
+          "type": "boolean"
+        },
+        "passwordHash": {
+          "type": "string"
+        },
+        "securityStamp": {
+          "type": "string"
+        },
+        "concurrencyStamp": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "phoneNumberConfirmed": {
+          "type": "boolean"
+        },
+        "twoFactorEnabled": {
+          "type": "boolean"
+        },
+        "lockoutEnd": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "lockoutEnabled": {
+          "type": "boolean"
+        },
+        "accessFailedCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "mp": {
+          "type": "string"
+        },
+        "isEnabled": {
+          "type": "boolean"
+        },
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "role": {
+          "$ref": "#/definitions/Role"
+        },
+        "userRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserRole"
+          }
+        },
+        "action": {
+          "type": "string"
+        },
+        "civilite": {
+          "type": "string"
+        },
+        "adresse": {
+          "type": "string"
+        },
+        "pays": {
+          "type": "string"
+        },
+        "ville": {
+          "type": "string"
+        },
+        "codePostal": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "fax": {
+          "type": "string"
+        },
+        "agence": {
+          "type": "string"
+        },
+        "dossierEncharge": {
+          "type": "string"
+        },
+        "etat": {
+          "type": "string"
+        },
+        "montant": {
+          "type": "string"
+        },
+        "nombreDossier": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fonction": {
+          "type": "string"
+        },
+        "grade": {
+          "type": "string"
+        },
+        "anciennete": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "segmentation": {
+          "type": "string"
+        },
+        "nationalité": {
+          "type": "string"
+        },
+        "dateDeNaissance": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "situationFamiliale": {
+          "type": "string"
+        },
+        "listeNotifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Notification"
+          }
+        },
+        "listeUserPortefeuilles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserPortefeuilleAssociation"
+          }
+        },
+        "userGroupAssociations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserGroupAssociation"
+          }
+        },
+        "messagesSent": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Message"
+          }
+        },
+        "abonnements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Abonnement"
+          }
+        },
+        "licences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Licence"
+          }
+        },
+        "hasActiveSubscription": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "hasActiveLicence": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "hasAnyValidAccess": {
+          "type": "boolean",
+          "readOnly": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "UserCreateDTO": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UserDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UserGroupAssociation": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "groupId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "group": {
+          "$ref": "#/definitions/Group"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UserPortefeuilleAssociation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "portefeuilleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "portefeuille": {
+          "$ref": "#/definitions/Portefeuille"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UserRole": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "role": {
+          "$ref": "#/definitions/Role"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UserUpdateDTO": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UserUpdateMPDto": {
+      "type": "object",
+      "properties": {
+        "mp": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
