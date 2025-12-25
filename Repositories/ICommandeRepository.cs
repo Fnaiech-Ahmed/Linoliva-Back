@@ -14,9 +14,10 @@ namespace tech_software_engineer_consultant_int_backend.Repositories
         Task<Commande?> GetCommandeById(int commandeId);
         Task<Commande?> GetCommandeByRef(string referenceCommande);
 
+        void Detach<TEntity>(TEntity entity) where TEntity : class;
 
 
-        Task<List<Commande>> GetAllCommandes();
+       Task<List<Commande>> GetAllCommandes();
         Task<List<Commande>> GetListeCommandesByOwner(string OwnerId);
 
 

@@ -268,82 +268,181 @@ namespace tech_software_engineer_consultant_int_backend.Services
 
 
 
-        public async Task<(bool, string)> UpdateCommande(int commandeId, CommandeUpdateDTO commandeUpdateDTO, List<Transactions> NewListTransactions)
+        /* public async Task<(bool, string)> UpdateCommande(int commandeId, CommandeUpdateDTO commandeUpdateDTO, List<Transactions> NewListTransactions)
+         {
+             Commande? existingCommande = await commandeRepository.GetCommandeById(commandeId);
+
+             if (existingCommande != null)
+             {
+                 Commande commande = commandeUpdateDTO.ToCommandeEntity();
+                 List<TransactionsDTO> existingTransactionsCommandeDTOs = await transactionService.GetTransactionsByRefCommande(existingCommande.ReferenceCommande);
+                 List<Transactions> existingTransactionsCommande = new List<Transactions>();
+                 foreach (TransactionsDTO transactionDTO in existingTransactionsCommandeDTOs)
+                 {
+                     existingTransactionsCommande.Add(transactionDTO.ToTransactionsEntity());
+                 }
+
+                 for (int i = 0; i < NewListTransactions.Count; i++)
+                 {
+                     //commande.Transactions[i].ReferenceCommande = commande.ReferenceCommande;
+                     if (transactionService.GetTransactionById(NewListTransactions[i].Id) == null)
+                     {
+                         TransactionCreateDto NewTransactionCreateDto = new TransactionCreateDto(NewListTransactions[i]);
+                         await transactionService.AddTransaction(NewTransactionCreateDto, commande.ReferenceCommande);
+                     }
+                     else
+                     {
+                         TransactionsUpdateDTO NewTransactionUpdateDTO = TransactionsUpdateDTO.FromTransactionsEntity(NewListTransactions[i]);
+                         await transactionService.UpdateTransaction(NewListTransactions[i].Id, NewTransactionUpdateDTO);
+                     }
+                 }
+
+                 // Vérifier s'il y a une transaction supprimée de la commande lors de la demande de sa mise à jour
+                 // et la supprimer de la BD
+                 foreach (var existingTransaction in existingTransactionsCommande)
+                 {
+                     if (existanceByIdTransactionCommande(existingTransaction, NewListTransactions) == false)
+                     {
+                         await transactionService.DeleteTransaction(existingTransaction.Id);
+                     }
+                 }
+
+                 List<TransactionsDTO> ListeTransactionsTrouveesDTOs = await transactionService.GetTransactionsByRefCommande(commande.ReferenceCommande);
+                 List<Transactions> ListeTransactionsTrouvees = new List<Transactions>();
+                 foreach (TransactionsDTO transactionDTO in ListeTransactionsTrouveesDTOs)
+                 {
+                     ListeTransactionsTrouvees.Add(transactionDTO.ToTransactionsEntity());
+                 }
+                 //commande.ListIdsTransactions.Clear();
+                 commande.ListIdsTransactions = new List<int>();
+                 for (int i = 0; i < ListeTransactionsTrouvees.Count; i++)
+                 {
+                     commande.ListIdsTransactions.Add(ListeTransactionsTrouvees[i].Id);
+                 }
+
+                 commande.MontantTotalTTC = await this.CalculerMontantTotalTTC(commande);
+                 commande.MontantTotalHT = await this.CalculerMontantTotalHT(commande);
+
+                 //return await commandeRepository.UpdateCommande(commande);
+                 var result = await commandeRepository.UpdateCommande(commande);
+
+                 if (result.IsSuccess)
+                 {
+                     Console.WriteLine(result.Message);
+                     return (true, result.Message);
+                 }
+                 else
+                 {
+                     Console.WriteLine("Erreur : " + result.Message);
+                     return (false, result.Message);
+                 }
+
+             }
+             else
+             {
+                 // Vous pouvez gérer le cas où la commande n'existe pas ici.
+                 return (false, "Aucune Commande trouvée.. Veuillez contacter le service administration ou technique. Merci. ");
+             }
+         }
+
+         */
+
+
+
+        public async Task<(bool, string)> UpdateCommande(
+    int commandeId,
+    CommandeUpdateDTO commandeUpdateDTO,
+    List<Transactions> newTransactions)
         {
-            Commande? existingCommande = await commandeRepository.GetCommandeById(commandeId);
-
-            if (existingCommande != null)
+            try
             {
-                Commande commande = commandeUpdateDTO.ToCommandeEntity();
-                List<TransactionsDTO> existingTransactionsCommandeDTOs = await transactionService.GetTransactionsByRefCommande(existingCommande.ReferenceCommande);
-                List<Transactions> existingTransactionsCommande = new List<Transactions>();
-                foreach (TransactionsDTO transactionDTO in existingTransactionsCommandeDTOs)
-                {
-                    existingTransactionsCommande.Add(transactionDTO.ToTransactionsEntity());
-                }
+                // 1️⃣ Récupération de la commande existante
+                var existingCommande = await commandeRepository.GetCommandeById(commandeId);
+                if (existingCommande == null)
+                    return (false, $"Commande {commandeId} introuvable.");
 
-                for (int i = 0; i < NewListTransactions.Count; i++)
+                // 2️⃣ Création de la nouvelle instance via le DTO
+                var commande = commandeUpdateDTO.ToCommandeEntity();
+                commande.Id = existingCommande.Id;
+                commande.ReferenceCommande = existingCommande.ReferenceCommande;
+                commande.ListIdsTransactions = new List<int>();
+
+                // 3️⃣ Détacher l’ancienne instance pour éviter conflit EF Core
+                commandeRepository.Detach(existingCommande);
+
+                // 4️⃣ Récupérer toutes les transactions existantes de la commande en un seul appel
+                var existingTransactions = (await transactionService
+                        .GetTransactionsByRefCommande(existingCommande.ReferenceCommande))
+                        .Select(t => t.ToTransactionsEntity())
+                        .ToList();
+
+                // 5️⃣ Créer des dictionnaires pour comparaison rapide
+                var existingDict = existingTransactions.ToDictionary(t => t.Id, t => t);
+                var newDict = newTransactions.ToDictionary(t => t.Id, t => t);
+
+                // 6️⃣ Transactions à ajouter / mettre à jour
+                var tasks = new List<Task>();
+                foreach (var tr in newTransactions)
                 {
-                    //commande.Transactions[i].ReferenceCommande = commande.ReferenceCommande;
-                    if (transactionService.GetTransactionById(NewListTransactions[i].Id) == null)
+                    if (tr.Id == 0 || !existingDict.ContainsKey(tr.Id))
                     {
-                        TransactionCreateDto NewTransactionCreateDto = new TransactionCreateDto(NewListTransactions[i]);
-                        await transactionService.AddTransaction(NewTransactionCreateDto, commande.ReferenceCommande);
+                        // Nouvelle transaction
+                        var createDto = new TransactionCreateDto(tr);
+                        tasks.Add(transactionService.AddTransaction(createDto, commande.ReferenceCommande));
                     }
                     else
                     {
-                        TransactionsUpdateDTO NewTransactionUpdateDTO = TransactionsUpdateDTO.FromTransactionsEntity(NewListTransactions[i]);
-                        await transactionService.UpdateTransaction(NewListTransactions[i].Id, NewTransactionUpdateDTO);
+                        // Mise à jour
+                        var updateDto = TransactionsUpdateDTO.FromTransactionsEntity(tr);
+                        tasks.Add(transactionService.UpdateTransaction(tr.Id, updateDto));
                     }
                 }
 
-                // Vérifier s'il y a une transaction supprimée de la commande lors de la demande de sa mise à jour
-                // et la supprimer de la BD
-                foreach (var existingTransaction in existingTransactionsCommande)
-                {
-                    if (existanceByIdTransactionCommande(existingTransaction, NewListTransactions) == false)
-                    {
-                        await transactionService.DeleteTransaction(existingTransaction.Id);
-                    }
-                }
+                await Task.WhenAll(tasks);
 
-                List<TransactionsDTO> ListeTransactionsTrouveesDTOs = await transactionService.GetTransactionsByRefCommande(commande.ReferenceCommande);
-                List<Transactions> ListeTransactionsTrouvees = new List<Transactions>();
-                foreach (TransactionsDTO transactionDTO in ListeTransactionsTrouveesDTOs)
-                {
-                    ListeTransactionsTrouvees.Add(transactionDTO.ToTransactionsEntity());
-                }
-                //commande.ListIdsTransactions.Clear();
-                commande.ListIdsTransactions = new List<int>();
-                for (int i = 0; i < ListeTransactionsTrouvees.Count; i++)
-                {
-                    commande.ListIdsTransactions.Add(ListeTransactionsTrouvees[i].Id);
-                }
+                // 7️⃣ Transactions à supprimer
+                var toDelete = existingTransactions
+                    .Where(t => !newDict.ContainsKey(t.Id))
+                    .ToList();
 
-                commande.MontantTotalTTC = await this.CalculerMontantTotalTTC(commande);
-                commande.MontantTotalHT = await this.CalculerMontantTotalHT(commande);
+                foreach (var tr in toDelete)
+                    await transactionService.DeleteTransaction(tr.Id);
 
-                //return await commandeRepository.UpdateCommande(commande);
+                // 8️⃣ Mise à jour de la liste des IDs
+                var updatedTransactions = (await transactionService
+                        .GetTransactionsByRefCommande(commande.ReferenceCommande))
+                        .Select(t => t.Id)
+                        .ToList();
+
+                commande.ListIdsTransactions = updatedTransactions;
+
+                // 9️⃣ Recalcul des montants
+                commande.MontantTotalTTC = await CalculerMontantTotalTTC(commande);
+                commande.MontantTotalHT = await CalculerMontantTotalHT(commande);
+
+                // 🔟 Update final dans la BD
                 var result = await commandeRepository.UpdateCommande(commande);
 
                 if (result.IsSuccess)
                 {
-                    Console.WriteLine(result.Message);
+                    Console.WriteLine($"Commande {commande.ReferenceCommande} mise à jour avec succès.");
                     return (true, result.Message);
                 }
                 else
                 {
-                    Console.WriteLine("Erreur : " + result.Message);
+                    Console.WriteLine($"Erreur mise à jour commande : {result.Message}");
                     return (false, result.Message);
                 }
-
             }
-            else
+            catch (Exception ex)
             {
-                // Vous pouvez gérer le cas où la commande n'existe pas ici.
-                return (false, "Aucune Commande trouvée.. Veuillez contacter le service administration ou technique. Merci. ");
+                Console.WriteLine($"Exception lors de la mise à jour de la commande : {ex.Message}");
+                return (false, "Erreur interne. Veuillez contacter le support.");
             }
         }
+
+
+
         public bool existanceByIdTransactionCommande (Transactions transaction, List<Transactions> NewListTransactions)
         {
             foreach (Transactions newTransaction in NewListTransactions)

@@ -110,7 +110,10 @@ namespace tech_software_engineer_consultant_int_backend.Repositories
             }
         }
 
-
+        public void Detach<TEntity>(TEntity entity) where TEntity : class
+        {
+            _dbContext.Entry(entity).State = EntityState.Detached;
+        }
 
 
         public async Task<bool> DeleteCommande(int commandeId)
