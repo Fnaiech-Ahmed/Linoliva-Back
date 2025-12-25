@@ -86,18 +86,27 @@ namespace tech_software_engineer_consultant_int_backend.Repositories
 
 
 
-        public async Task<bool> UpdateCommande(Commande commande)
+        public async Task<(bool IsSuccess, string Message)> UpdateCommande(Commande commande)
         {
             try
             {
                 _dbContext.Commandes.Update(commande);
                 int numRowsAffected = await _dbContext.SaveChangesAsync();
-                return numRowsAffected > 0;
+
+                if (numRowsAffected > 0)
+                {
+                    return (true, "La commande a été mise à jour avec succès.");
+                }
+                else
+                {
+                    return (false, "Aucune modification n'a été enregistrée.");
+                }
             }
             catch (Exception ex)
             {
-                // Log the exception
-                return false;
+                Console.WriteLine(ex.InnerException?.Message);
+                // Vous pouvez aussi logguer l'erreur ici
+                return (false, $"Erreur lors de la mise à jour : {ex.Message}");
             }
         }
 

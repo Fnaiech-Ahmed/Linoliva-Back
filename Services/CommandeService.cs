@@ -268,17 +268,16 @@ namespace tech_software_engineer_consultant_int_backend.Services
 
 
 
-
-        public async Task<bool> UpdateCommande(int commandeId, CommandeUpdateDTO commandeUpdateDTO, List<Transactions> NewListTransactions)
+        public async Task<(bool, string)> UpdateCommande(int commandeId, CommandeUpdateDTO commandeUpdateDTO, List<Transactions> NewListTransactions)
         {
-            Commande? existingCommande = await commandeRepository.GetCommandeById(commandeId);            
+            Commande? existingCommande = await commandeRepository.GetCommandeById(commandeId);
 
             if (existingCommande != null)
             {
                 Commande commande = commandeUpdateDTO.ToCommandeEntity();
                 List<TransactionsDTO> existingTransactionsCommandeDTOs = await transactionService.GetTransactionsByRefCommande(existingCommande.ReferenceCommande);
                 List<Transactions> existingTransactionsCommande = new List<Transactions>();
-                foreach(TransactionsDTO transactionDTO in existingTransactionsCommandeDTOs)
+                foreach (TransactionsDTO transactionDTO in existingTransactionsCommandeDTOs)
                 {
                     existingTransactionsCommande.Add(transactionDTO.ToTransactionsEntity());
                 }
@@ -314,24 +313,37 @@ namespace tech_software_engineer_consultant_int_backend.Services
                 {
                     ListeTransactionsTrouvees.Add(transactionDTO.ToTransactionsEntity());
                 }
-                commande.ListIdsTransactions.Clear();
-                for (int i = 0;i < ListeTransactionsTrouvees.Count; i++)
+                //commande.ListIdsTransactions.Clear();
+                commande.ListIdsTransactions = new List<int>();
+                for (int i = 0; i < ListeTransactionsTrouvees.Count; i++)
                 {
                     commande.ListIdsTransactions.Add(ListeTransactionsTrouvees[i].Id);
-                }                
+                }
 
                 commande.MontantTotalTTC = await this.CalculerMontantTotalTTC(commande);
                 commande.MontantTotalHT = await this.CalculerMontantTotalHT(commande);
 
-                return await commandeRepository.UpdateCommande(commande);                
+                //return await commandeRepository.UpdateCommande(commande);
+                var result = await commandeRepository.UpdateCommande(commande);
+
+                if (result.IsSuccess)
+                {
+                    Console.WriteLine(result.Message);
+                    return (true, result.Message);
+                }
+                else
+                {
+                    Console.WriteLine("Erreur : " + result.Message);
+                    return (false, result.Message);
+                }
+
             }
             else
             {
                 // Vous pouvez gérer le cas où la commande n'existe pas ici.
-                return false;
+                return (false, "Aucune Commande trouvée.. Veuillez contacter le service administration ou technique. Merci. ");
             }
         }
-
         public bool existanceByIdTransactionCommande (Transactions transaction, List<Transactions> NewListTransactions)
         {
             foreach (Transactions newTransaction in NewListTransactions)

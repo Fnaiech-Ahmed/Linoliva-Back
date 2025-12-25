@@ -7,7 +7,7 @@ namespace tech_software_engineer_consultant_int_backend.Repositories
     public interface ICommandeRepository
     {
         Task<bool> AddCommande(Commande commande);
-        Task<bool> UpdateCommande(Commande commande);
+        Task<(bool IsSuccess, string Message)> UpdateCommande(Commande commande);
 
 
 
@@ -18,9 +18,6 @@ namespace tech_software_engineer_consultant_int_backend.Repositories
 
         Task<List<Commande>> GetAllCommandes();
         Task<List<Commande>> GetListeCommandesByOwner(string OwnerId);
-
-
-
 
 
         Task<bool> DeleteCommande(int commandeId);

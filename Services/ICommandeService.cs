@@ -23,9 +23,9 @@ namespace tech_software_engineer_consultant_int_backend.Services
         Task<(decimal, decimal)> GetTotalCommandeById(int id);
         Task<decimal> CalculerMontantTotalTTC(Commande commande);
         Task<decimal> CalculerMontantTotalHT(Commande commande);
-        
-        
-        Task<bool> UpdateCommande(int commandeId, CommandeUpdateDTO commandeUpdateDTO, List<Transactions> NewListTransactions);
+
+
+        Task<(bool, string)> UpdateCommande(int commandeId, CommandeUpdateDTO commandeUpdateDTO, List<Transactions> NewListTransactions);
 
         bool existanceByIdTransactionCommande(Transactions transaction, List<Transactions> NewListTransactions);
 

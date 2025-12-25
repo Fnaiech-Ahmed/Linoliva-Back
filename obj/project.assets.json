@@ -10394,23 +10394,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {},
+    "C:\\Users\\MSI\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\source\\repos\\Workspace-DotNet-Core\\TSE-Consultant-INT-Backend-main\\linoliva-Backend-main\\tech-software-engineer-consultant-int-backend.csproj",
+      "projectUniqueName": "C:\\Users\\MSI\\Desktop\\linoliva backend_\\Linoliva-Back\\tech-software-engineer-consultant-int-backend.csproj",
       "projectName": "tech-software-engineer-consultant-int-backend",
-      "projectPath": "C:\\Users\\user\\source\\repos\\Workspace-DotNet-Core\\TSE-Consultant-INT-Backend-main\\linoliva-Backend-main\\tech-software-engineer-consultant-int-backend.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\source\\repos\\Workspace-DotNet-Core\\TSE-Consultant-INT-Backend-main\\linoliva-Backend-main\\obj\\",
+      "projectPath": "C:\\Users\\MSI\\Desktop\\linoliva backend_\\Linoliva-Back\\tech-software-engineer-consultant-int-backend.csproj",
+      "packagesPath": "C:\\Users\\MSI\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\MSI\\Desktop\\linoliva backend_\\Linoliva-Back\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MSI\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -10438,7 +10438,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -10532,7 +10532,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

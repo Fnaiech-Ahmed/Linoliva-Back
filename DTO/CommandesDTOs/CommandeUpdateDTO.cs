@@ -4,6 +4,7 @@ namespace tech_software_engineer_consultant_int_backend.DTO.CommandesDTOs
 {
     public class CommandeUpdateDTO
     {
+        public string ReferenceCommande { get; set; }
         public string NomVendeur { get; set; }
         public string AdresseVendeur { get; set; }
         public string MFVendeur { get; set; }
@@ -28,6 +29,7 @@ namespace tech_software_engineer_consultant_int_backend.DTO.CommandesDTOs
         {
             return new CommandeUpdateDTO
             {
+                ReferenceCommande = commande.ReferenceCommande,
                 NomVendeur = commande.NomVendeur,
                 AdresseVendeur = commande.AdresseVendeur,
                 MFVendeur = commande.MFVendeur,
@@ -49,6 +51,7 @@ namespace tech_software_engineer_consultant_int_backend.DTO.CommandesDTOs
         {
             return new Commande
             {
+                ReferenceCommande= ReferenceCommande,
                 NomVendeur = NomVendeur,
                 AdresseVendeur = AdresseVendeur,
                 MFVendeur = MFVendeur,
@@ -62,6 +65,7 @@ namespace tech_software_engineer_consultant_int_backend.DTO.CommandesDTOs
                 ProprietaireId = ProprietaireId,
 
                 TVA = TVA,
+
             };
         }
     }

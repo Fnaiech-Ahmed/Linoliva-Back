@@ -149,26 +149,40 @@ namespace tech_software_engineer_consultant_int_backend.Controllers
         }
 
         [HttpPut("update-Commande/{commandeId}")]
-        public async Task<ActionResult> UpdateCommande(int commandeId, [FromBody] CommandeUpdateDTO commande, [FromQuery] List<Transactions> ListTransactions)
+        public async Task<ActionResult> UpdateCommande(
+            int commandeId,
+            [FromBody] CommandeUpdateDTO commande,
+            [FromQuery] List<Transactions> listTransactions)
         {
-            if (!IsUserAuthorized("CommandeSeniorPolicy")) // Remplacez "requiredPolicy" par la politique réelle requise
+            if (!IsUserAuthorized("CommandeSeniorPolicy"))
             {
-                return Unauthorized();
+                return Unauthorized(new { message = "Accès refusé : vous n’êtes pas autorisé à effectuer cette action." });
             }
 
             if (commande == null)
             {
-                return BadRequest("Commande data is null");
+                return BadRequest(new { message = "Les données de la commande sont nulles." });
             }
 
-            var result = await _commandeService.UpdateCommande(commandeId, commande, ListTransactions);
-            if (result)
+            // Vérification commandeId valide
+            if (commandeId <= 0)
             {
-                return NoContent();
+                return BadRequest(new { message = "L'identifiant de la commande est invalide." });
+            }
+
+            // Appel service (qui retourne (bool IsSuccess, string Message))
+            var (isSuccess, message) = await _commandeService.UpdateCommande(commandeId, commande, listTransactions);
+
+            if (isSuccess)
+            {
+                return Ok(new { message = message ?? "La commande a été mise à jour avec succès." });
             }
             else
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to update commande");
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new { message = message ?? "Échec lors de la mise à jour de la commande." }
+                );
             }
         }
 
