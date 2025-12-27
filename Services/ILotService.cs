@@ -9,7 +9,7 @@ namespace tech_software_engineer_consultant_int_backend.Services
         Task<List<LotDTO>> GetLots();
         Task<LotDTO?> GetLotById(int id);
         Task<bool> UpdateLot(int lotId, LotUpdateDTO lotUpdateDTO);
-        Task<List<(Lot, int)>> VenteQuantite(int ProductId, int QuantiteSaisie);
+        Task<VenteResult> VenteQuantite(int productId, int quantiteSaisie);
 
         Task<(bool Success, int LotId, string Message)> AchatQuantite(LotCreateDTO lotCreateDTO);
         Task<bool> ReplenishLotsWithOldQuantity(string RefLot, int Quantite);

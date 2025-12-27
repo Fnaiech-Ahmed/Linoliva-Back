@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tech-software-engineer-consultant-int-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+283cdce79996f137c216b87861a91b551bf1b161")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d2956af1bb9953b967bbafbcef737dd1aad96126")]
 [assembly: System.Reflection.AssemblyProductAttribute("tech-software-engineer-consultant-int-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tech-software-engineer-consultant-int-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

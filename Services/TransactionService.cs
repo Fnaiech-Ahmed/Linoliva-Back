@@ -133,7 +133,7 @@ namespace tech_software_engineer_consultant_int_backend.Services
                 if (transaction.TypeTransaction == TypeTransaction.Vente)
                 {
                     // Récupération FIFO des lots à débiter
-                    lotsVendus = await lotService.VenteQuantite(transaction.ProductId, transaction.QuantityEntered);
+                    VenteResult resultatVente = await lotService.VenteQuantite(transaction.ProductId, transaction.QuantityEntered);
 
                     if (lotsVendus == null || lotsVendus.Count == 0)
                     {

@@ -1,8 +1,9 @@
-﻿using tech_software_engineer_consultant_int_backend.Models;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using tech_software_engineer_consultant_int_backend.Repositories;
 using tech_software_engineer_consultant_int_backend.DTO.LotsDTOs;
+using tech_software_engineer_consultant_int_backend.Models;
+using tech_software_engineer_consultant_int_backend.Repositories;
 
 namespace tech_software_engineer_consultant_int_backend.Services
 {
@@ -10,11 +11,14 @@ namespace tech_software_engineer_consultant_int_backend.Services
     {
         private readonly ILotRepository lotRepository;
         private readonly IInventaireProduitService inventaireProduitService;
+        private readonly MyDbContext _dbContext;
 
-        public LotService(ILotRepository repository, IInventaireProduitService _inventaireProduitService)
+
+        public LotService(ILotRepository repository, IInventaireProduitService _inventaireProduitService, MyDbContext dbContext)
         {
             lotRepository = repository;
             inventaireProduitService = _inventaireProduitService;
+            _dbContext = dbContext;
         }
 
         public async Task<int> AddLot(LotCreateDTO lotCreateDTO)
@@ -106,51 +110,111 @@ namespace tech_software_engineer_consultant_int_backend.Services
             return listeLots;
         }*/
 
-        public async Task<List<(Lot, int)>> VenteQuantite(int ProductId, int QuantiteSaisie)
+        /* public async Task<List<(Lot, int)>> VenteQuantite(int ProductId, int QuantiteSaisie)
+         {
+             int x = QuantiteSaisie;
+             var listeTriee = (await lotRepository.GetLotsByProductId(ProductId))
+                              .OrderBy(l => l.Date)
+                              .ToList();
+
+             List<Lot> lotsToUpdate = new List<Lot>();
+             List<(Lot, int)> listeLots = new List<(Lot, int)>();
+
+             foreach (var lot in listeTriee)
+             {
+                 if (x <= 0) break;
+                 if (lot.Quantite == 0) continue;
+
+                 if (lot.Quantite < x)
+                 {
+                     listeLots.Add((lot, lot.Quantite));
+                     x -= lot.Quantite;
+                     lot.Quantite = 0;
+                     lotsToUpdate.Add(lot);
+                 }
+                 else if (lot.Quantite == x)
+                 {
+                     listeLots.Add((lot, x));
+                     lot.Quantite = 0;
+                     lotsToUpdate.Add(lot);
+                     break;
+                 }
+                 else // lot.Quantite > x
+                 {
+                     listeLots.Add((lot, x));
+                     lot.Quantite -= x;
+                     lotsToUpdate.Add(lot);
+                     break;
+                 }
+             }
+
+             // 🔥 UPDATE BATCH (1 seule fois)
+             await lotRepository.UpdateLotsBatch(lotsToUpdate);
+
+             return listeLots;
+         }
+         */
+
+        public async Task<VenteResult> VenteQuantite(int productId, int quantiteSaisie)
         {
-            int x = QuantiteSaisie;
-            var listeTriee = (await lotRepository.GetLotsByProductId(ProductId))
-                             .OrderBy(l => l.Date)
-                             .ToList();
+            // Initialisation du retour
+            var result = new VenteResult();
 
-            List<Lot> lotsToUpdate = new List<Lot>();
-            List<(Lot, int)> listeLots = new List<(Lot, int)>();
-
-            foreach (var lot in listeTriee)
+            if (quantiteSaisie <= 0)
             {
-                if (x <= 0) break;
-                if (lot.Quantite == 0) continue;
-
-                if (lot.Quantite < x)
-                {
-                    listeLots.Add((lot, lot.Quantite));
-                    x -= lot.Quantite;
-                    lot.Quantite = 0;
-                    lotsToUpdate.Add(lot);
-                }
-                else if (lot.Quantite == x)
-                {
-                    listeLots.Add((lot, x));
-                    lot.Quantite = 0;
-                    lotsToUpdate.Add(lot);
-                    break;
-                }
-                else // lot.Quantite > x
-                {
-                    listeLots.Add((lot, x));
-                    lot.Quantite -= x;
-                    lotsToUpdate.Add(lot);
-                    break;
-                }
+                result.Message = "La quantité doit être supérieure à 0.";
+                return result; // Success est false par défaut
             }
 
-            // 🔥 UPDATE BATCH (1 seule fois)
-            await lotRepository.UpdateLotsBatch(lotsToUpdate);
+            using var transaction = await _dbContext.Database.BeginTransactionAsync();
 
-            return listeLots;
+            try
+            {
+                var listeTriee = await _dbContext.Lots
+                    .Where(l => l.IDProduit == productId && l.Quantite > 0)
+                    .OrderBy(l => l.Date)
+                    .ToListAsync();
+
+                int resteASoustraire = quantiteSaisie;
+
+                foreach (var lot in listeTriee)
+                {
+                    if (resteASoustraire <= 0) break;
+
+                    int montantAPrelever = Math.Min(lot.Quantite, resteASoustraire);
+
+                    lot.Quantite -= montantAPrelever;
+                    resteASoustraire -= montantAPrelever;
+
+                    result.LotsImpactes.Add((lot, montantAPrelever));
+                }
+
+                // --- GESTION DU CAS "STOCK INSUFFISANT" ---
+                if (resteASoustraire > 0)
+                {
+                    await transaction.RollbackAsync(); // On annule les modifs mémoire
+                    result.Success = false;
+                    result.Message = $"Stock insuffisant. Manquant : {resteASoustraire}";
+                    result.LotsImpactes.Clear(); // On vide la liste car la vente ne se fait pas
+                    return result;
+                }
+
+                await _dbContext.SaveChangesAsync();
+                await transaction.CommitAsync();
+
+                result.Success = true;
+                result.Message = "Vente effectuée avec succès.";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                result.Success = false;
+                result.Message = $"Erreur technique : {ex.Message}";
+                result.LotsImpactes.Clear();
+                return result;
+            }
         }
-
-
         public async Task<(bool Success, int LotId, string Message)> AchatQuantite(LotCreateDTO lotCreateDTO)
         {
             try
