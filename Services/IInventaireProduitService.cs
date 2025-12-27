@@ -10,6 +10,8 @@ namespace tech_software_engineer_consultant_int_backend.Services
         Task<InventaireProduitDTO> GetInventaireProduitById(int id);
         Task<(bool, int)> VerifInventaireProduitByProductId(int ProductId);
         Task<bool> UpdateInventaireProduit(int inventaireProduitId, InventaireProduitUpdateDTO inventaireProduitUpdateDTO);
+
+        Task<bool> UpdateQuantiteProduit(int productId);
         Task<(bool, int)> ModifierQuantiteProduit(int inventaireProduitId, string NomProduit, int Quantite, TypeTransaction typeTransaction);
         Task<bool> DeleteInventaireProduit(int id);
     }

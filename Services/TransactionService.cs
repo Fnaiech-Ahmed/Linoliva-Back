@@ -6,6 +6,7 @@ using System.Transactions;
 using tech_software_engineer_consultant_int_backend.Repositories;
 using tech_software_engineer_consultant_int_backend.DTO.TransactionsDTOs;
 using tech_software_engineer_consultant_int_backend.DTO.LotsTransactionsDTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace tech_software_engineer_consultant_int_backend.Services
 {
@@ -15,90 +16,204 @@ namespace tech_software_engineer_consultant_int_backend.Services
         private readonly IInventaireProduitService inventaireProduitService;
         private readonly ILotService lotService;
         private readonly ILotsTransactionsService lotsTransactionsService;
+        private readonly MyDbContext _dbContext;
 
-        public TransactionService(ITransactionRepository _transactionRepositoryrepository, IInventaireProduitService _inventaireService, ILotService _lotService, ILotsTransactionsService _lotsTransactionsService)
+        public TransactionService(ITransactionRepository _transactionRepositoryrepository, IInventaireProduitService _inventaireService, ILotService _lotService, ILotsTransactionsService _lotsTransactionsService, MyDbContext dbContext)
         {
             transactionRepository = _transactionRepositoryrepository;
             inventaireProduitService = _inventaireService;
             lotService = _lotService;
             lotsTransactionsService = _lotsTransactionsService;
+            _dbContext = dbContext;
         }
 
-        public async Task<(bool, int)> AddTransaction(TransactionCreateDto transactionCreateDto, string ReferenceCommande)
+        /* public async Task<(bool, int)> AddTransaction(TransactionCreateDto transactionCreateDto, string ReferenceCommande)
+         {
+             Transactions transaction = transactionCreateDto.ToTransactionsEntity();
+             if (ReferenceCommande != null)
+             {
+                 transaction.ReferenceCommande = ReferenceCommande;
+             }
+             else
+             {
+                 transaction.ReferenceCommande = "à vérifier svp";
+             }
+
+             decimal amountHT = transaction.QuantityEntered * transaction.PrixUnitaire;
+             decimal amountTTC = amountHT + (amountHT * transaction.TVA / 100);
+             //MessageBox.Show("Stade de l'ajout de la transaction: " + amountTTC.ToString());
+
+             transaction.PTHT = amountHT;
+             transaction.PTTC = amountTTC;
+
+
+             if (transaction.TypeTransaction == TypeTransaction.Vente)
+             {
+                 transaction.ReferenceLot = "Néant";
+             }
+
+             // Ajouter la transaction dans la BD
+             (bool resultatBool, int IdTransaction) resultatAjoutTransaction = await transactionRepository.AddTransaction(transaction);
+
+             //MessageBox.Show("Id Transaction: " + IdTransaction);
+
+             // Modifier la Qauntité restante du Produit X dans l'inventaire
+             (bool, int) resultat = await inventaireProduitService.ModifierQuantiteProduit(transaction.ProductId, transaction.NomProduit,transaction.QuantityEntered, transaction.TypeTransaction);          
+
+             if (resultat.Item1)
+             {
+                 // Modifier la valeur de la Quantité Restante du produit dans la table des Transactions
+                 // resultat.Item2 reçoit la valeur de newRemainingQuantity
+                 await transactionRepository.UpdateTransactionRemainingQuantity(transaction.ProductId, resultat.Item2);
+
+                 // Dans le cas d'une transaction de vente:
+                 // Nous sélectionnons les lots d'ou nous allons prendre la quantité nécessaire
+                 // et faire un enregistrement des LotsTransactions dans BD 
+                 if (transaction.TypeTransaction == TypeTransaction.Vente)
+                 {
+                     List<(Lot, int)> resultatVenteQuantiteLot = await lotService.VenteQuantite(transaction.ProductId, transaction.QuantityEntered);
+                     for (int i = 0; i< resultatVenteQuantiteLot.Count; i++)
+                     {
+                         //Enregistrement du LotTransaction dans BD 
+                         LotsTransactions newLotsTransactions = new LotsTransactions
+                         {
+                             IdTransaction = resultatAjoutTransaction.IdTransaction.ToString(),
+                             RefLot = resultatVenteQuantiteLot[i].Item1.Reference,
+                             Quantite = resultatVenteQuantiteLot[i].Item2
+                         };
+                         await lotsTransactionsService.AddLT(LotsTransactionsDTO.FromEntity(newLotsTransactions));
+                     }
+
+                     //MessageBox.Show(resultatVenteQuantiteLot.FirstOrDefault().Item1.Reference);
+
+                     // Mettre à jour la référence du Lot                 
+                     transaction.ReferenceLot = resultatVenteQuantiteLot.FirstOrDefault().Item1.Reference;
+                     bool resUpdate = await UpdateRefLotTransaction(resultatAjoutTransaction.IdTransaction, transaction);
+                     if (!resUpdate)
+                     {
+                         //MessageBox.Show("Alerte. Mise à jour échouée ! Id Transaction: " + IdTransaction.ToString());
+                         return (false, 0);
+                     }
+                 }
+
+                 return (true, resultatAjoutTransaction.IdTransaction);
+             }
+             else
+             {
+                 //MessageBox.Show("Problème d'ajout de la transaction.");
+                 return (false, 0);
+             }
+         }*/
+
+        public async Task<(bool, int)> AddTransaction(TransactionCreateDto dto, string referenceCommande)
         {
-            Transactions transaction = transactionCreateDto.ToTransactionsEntity();
-            if (ReferenceCommande != null)
+            // Démarrer une transaction SQL pour garantir la cohérence
+            using var dbTransaction = await _dbContext.Database.BeginTransactionAsync();
+
+            try
             {
-                transaction.ReferenceCommande = ReferenceCommande;
-            }
-            else
-            {
-                transaction.ReferenceCommande = "à vérifier svp";
-            }
-            
-            decimal amountHT = transaction.QuantityEntered * transaction.PrixUnitaire;
-            decimal amountTTC = amountHT + (amountHT * transaction.TVA / 100);
-            //MessageBox.Show("Stade de l'ajout de la transaction: " + amountTTC.ToString());
+                // ------------------------------
+                // 1. Construire l'entité Transaction
+                // ------------------------------
+                var transaction = dto.ToTransactionsEntity();
+                transaction.ReferenceCommande = referenceCommande ?? "à vérifier svp";
 
-            transaction.PTHT = amountHT;
-            transaction.PTTC = amountTTC;
+                // Calcul des totaux
+                decimal amountHT = transaction.QuantityEntered * transaction.PrixUnitaire;
+                decimal amountTTC = amountHT + (amountHT * transaction.TVA / 100);
 
+                transaction.PTHT = amountHT;
+                transaction.PTTC = amountTTC;
 
-            if (transaction.TypeTransaction == TypeTransaction.Vente)
-            {
-                transaction.ReferenceLot = "Néant";
-            }
+                List<(Lot, int)> lotsVendus = new();
 
-            // Ajouter la transaction dans la BD
-            (bool resultatBool, int IdTransaction) resultatAjoutTransaction = await transactionRepository.AddTransaction(transaction);
-            
-            //MessageBox.Show("Id Transaction: " + IdTransaction);
-
-            // Modifier la Qauntité restante du Produit X dans l'inventaire
-            (bool, int) resultat = await inventaireProduitService.ModifierQuantiteProduit(transaction.ProductId, transaction.NomProduit,transaction.QuantityEntered, transaction.TypeTransaction);          
-
-            if (resultat.Item1)
-            {
-                // Modifier la valeur de la Quantité Restante du produit dans la table des Transactions
-                // resultat.Item2 reçoit la valeur de newRemainingQuantity
-                await transactionRepository.UpdateTransactionRemainingQuantity(transaction.ProductId, resultat.Item2);
-
-                // Dans le cas d'une transaction de vente:
-                // Nous sélectionnons les lots d'ou nous allons prendre la quantité nécessaire
-                // et faire un enregistrement des LotsTransactions dans BD 
+                // ------------------------------
+                // 2. Gestion spécifique pour une transaction de VENTE
+                // ------------------------------
                 if (transaction.TypeTransaction == TypeTransaction.Vente)
                 {
-                    List<(Lot, int)> resultatVenteQuantiteLot = await lotService.VenteQuantite(transaction.ProductId, transaction.QuantityEntered);
-                    for (int i = 0; i< resultatVenteQuantiteLot.Count; i++)
+                    // Récupération FIFO des lots à débiter
+                    lotsVendus = await lotService.VenteQuantite(transaction.ProductId, transaction.QuantityEntered);
+
+                    if (lotsVendus == null || lotsVendus.Count == 0)
                     {
-                        //Enregistrement du LotTransaction dans BD 
-                        LotsTransactions newLotsTransactions = new LotsTransactions
-                        {
-                            IdTransaction = resultatAjoutTransaction.IdTransaction.ToString(),
-                            RefLot = resultatVenteQuantiteLot[i].Item1.Reference,
-                            Quantite = resultatVenteQuantiteLot[i].Item2
-                        };
-                        await lotsTransactionsService.AddLT(LotsTransactionsDTO.FromEntity(newLotsTransactions));
+                        await dbTransaction.RollbackAsync();
+                        return (false, 0); // stock insuffisant
                     }
 
-                    //MessageBox.Show(resultatVenteQuantiteLot.FirstOrDefault().Item1.Reference);
+                    // Premier lot utilisé = lot principal
+                    transaction.ReferenceLot = lotsVendus.First().Item1.Reference;
+                }
+                else
+                {
+                    transaction.ReferenceLot = "Néant";
+                }
 
-                    // Mettre à jour la référence du Lot                 
-                    transaction.ReferenceLot = resultatVenteQuantiteLot.FirstOrDefault().Item1.Reference;
-                    bool resUpdate = await UpdateRefLotTransaction(resultatAjoutTransaction.IdTransaction, transaction);
-                    if (!resUpdate)
+                // ------------------------------
+                // 3. Enregistrement de la transaction
+                // ------------------------------
+                var (success, transactionId) = await transactionRepository.AddTransaction(transaction);
+
+                if (!success || transactionId <= 0)
+                {
+                    await dbTransaction.RollbackAsync();
+                    return (false, 0);
+                }
+
+                // ------------------------------
+                // 4. Mise à jour de l'inventaire
+                // ------------------------------
+                var (ok, newRemainingQuantity) =
+                    await inventaireProduitService.ModifierQuantiteProduit(
+                        transaction.ProductId,
+                        transaction.NomProduit,
+                        transaction.QuantityEntered,
+                        transaction.TypeTransaction
+                    );
+
+                if (!ok)
+                {
+                    await dbTransaction.RollbackAsync();
+                    return (false, 0);
+                }
+
+                await transactionRepository.UpdateTransactionRemainingQuantity(
+                    transaction.ProductId,
+                    newRemainingQuantity
+                );
+
+                // ------------------------------
+                // 5. Enregistrer les lots utilisés dans LotsTransactions
+                // ------------------------------
+                if (transaction.TypeTransaction == TypeTransaction.Vente)
+                {
+                    foreach (var item in lotsVendus)
                     {
-                        //MessageBox.Show("Alerte. Mise à jour échouée ! Id Transaction: " + IdTransaction.ToString());
-                        return (false, 0);
+                        var newLT = new LotsTransactions
+                        {
+                            IdTransaction = transactionId.ToString(),
+                            RefLot = item.Item1.Reference,
+                            Quantite = item.Item2
+                        };
+
+                        var dtoLT = LotsTransactionsDTO.FromEntity(newLT);
+
+                        await lotsTransactionsService.AddLT(dtoLT);
                     }
                 }
-                
-                return (true, resultatAjoutTransaction.IdTransaction);
+
+                // ------------------------------
+                // 6. Tout est OK -> valider la transaction SQL
+                // ------------------------------
+                await dbTransaction.CommitAsync();
+
+                return (true, transactionId);
             }
-            else
+            catch (Exception)
             {
-                //MessageBox.Show("Problème d'ajout de la transaction.");
-                return (false, 0);
+                // Si une erreur survient -> rollback pour cohérence
+                await dbTransaction.RollbackAsync();
+                throw;
             }
         }
 

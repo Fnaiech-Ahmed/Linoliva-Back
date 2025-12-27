@@ -56,6 +56,12 @@ namespace tech_software_engineer_consultant_int_backend.Repositories
             }
         }
 
+        public async Task<int> GetTotalQuantiteByProductId(int productId)
+        {
+            return await _dbContext.Lots
+                .Where(l => l.IDProduit == productId)
+                .SumAsync(l => l.Quantite);
+        }
         public async Task<Lot?> GetLotByReference(string reference)
         {
             try
@@ -68,6 +74,12 @@ namespace tech_software_engineer_consultant_int_backend.Repositories
                 // Log the exception
                 return null;
             }
+        }
+
+        public async Task UpdateLotsBatch(List<Lot> lots)
+        {
+            _dbContext.Lots.UpdateRange(lots);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<int> AddLot(Lot lot)

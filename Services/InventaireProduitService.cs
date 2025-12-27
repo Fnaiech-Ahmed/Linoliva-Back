@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using tech_software_engineer_consultant_int_backend.Repositories;
 using tech_software_engineer_consultant_int_backend.DTO.InventaireProduitDTOs;
 using Microsoft.IdentityModel.Tokens;
+using NuGet.Protocol.Core.Types;
 
 namespace tech_software_engineer_consultant_int_backend.Services
 {
     public class InventaireProduitService : IInventaireProduitService
     {
         private readonly IInventaireProduitRepository inventaireProduitRepository;
+        private readonly ILotRepository lotRepository;
 
-        public InventaireProduitService(IInventaireProduitRepository repository)
+        public InventaireProduitService(IInventaireProduitRepository repository , ILotRepository ilotRepository)
         {
             inventaireProduitRepository = repository;
+            lotRepository = ilotRepository;
         }
 
         public async Task<bool> AddInventaireProduit(InventaireProduitCreateDTO NewInventaireProduitCreateDTO)
@@ -81,6 +84,13 @@ namespace tech_software_engineer_consultant_int_backend.Services
                 return false;
             }
         }
+
+        public async Task<bool> UpdateQuantiteProduit(int productId)
+        {
+            int total = await lotRepository.GetTotalQuantiteByProductId(productId);
+            return await inventaireProduitRepository.UpdateQuantite(productId, total);
+        }
+
 
         public async Task<(bool,int)> ModifierQuantiteProduit(int inventaireProduitId, string NomProduit, int Quantite, TypeTransaction typeTransaction)
         {

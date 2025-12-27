@@ -1268,7 +1268,7 @@
             }
           },
           {
-            "name": "ListTransactions",
+            "name": "listTransactions",
             "in": "query",
             "schema": {
               "type": "array",
@@ -2556,6 +2556,37 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/Lot/achat-lot": {
+      "post": {
+        "tags": [
+          "Lot"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LotCreateDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LotCreateDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LotCreateDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -6905,6 +6936,10 @@
       "CommandeUpdateDTO": {
         "type": "object",
         "properties": {
+          "referenceCommande": {
+            "type": "string",
+            "nullable": true
+          },
           "nomVendeur": {
             "type": "string",
             "nullable": true

@@ -72,7 +72,7 @@ namespace tech_software_engineer_consultant_int_backend.Services
             }
         }
 
-        public async Task<List<(Lot, int)>> VenteQuantite(int ProductId, int QuantiteSaisie) 
+        /*public async Task<List<(Lot, int)>> VenteQuantite(int ProductId, int QuantiteSaisie) 
         {
             int x = QuantiteSaisie;
             List<Lot> existingsLotsProduct = await lotRepository.GetLotsByProductId(ProductId);
@@ -104,6 +104,89 @@ namespace tech_software_engineer_consultant_int_backend.Services
 
 
             return listeLots;
+        }*/
+
+        public async Task<List<(Lot, int)>> VenteQuantite(int ProductId, int QuantiteSaisie)
+        {
+            int x = QuantiteSaisie;
+            var listeTriee = (await lotRepository.GetLotsByProductId(ProductId))
+                             .OrderBy(l => l.Date)
+                             .ToList();
+
+            List<Lot> lotsToUpdate = new List<Lot>();
+            List<(Lot, int)> listeLots = new List<(Lot, int)>();
+
+            foreach (var lot in listeTriee)
+            {
+                if (x <= 0) break;
+                if (lot.Quantite == 0) continue;
+
+                if (lot.Quantite < x)
+                {
+                    listeLots.Add((lot, lot.Quantite));
+                    x -= lot.Quantite;
+                    lot.Quantite = 0;
+                    lotsToUpdate.Add(lot);
+                }
+                else if (lot.Quantite == x)
+                {
+                    listeLots.Add((lot, x));
+                    lot.Quantite = 0;
+                    lotsToUpdate.Add(lot);
+                    break;
+                }
+                else // lot.Quantite > x
+                {
+                    listeLots.Add((lot, x));
+                    lot.Quantite -= x;
+                    lotsToUpdate.Add(lot);
+                    break;
+                }
+            }
+
+            // 🔥 UPDATE BATCH (1 seule fois)
+            await lotRepository.UpdateLotsBatch(lotsToUpdate);
+
+            return listeLots;
+        }
+
+
+        public async Task<(bool Success, int LotId, string Message)> AchatQuantite(LotCreateDTO lotCreateDTO)
+        {
+            try
+            {
+                // Vérifier si la référence existe déjà
+                Lot? existingLot = await lotRepository.GetLotByReference(lotCreateDTO.Reference);
+                if (existingLot != null)
+                {
+                    existingLot.Quantite += lotCreateDTO.Quantite;
+
+                    bool updated = await lotRepository.UpdateLot(existingLot.Id, existingLot);
+
+                    if (!updated)
+                        return (false, 0, "Impossible de mettre à jour ce lot.");
+
+                    await inventaireProduitService.UpdateQuantiteProduit(existingLot.IDProduit);
+                    
+
+                    return (true, existingLot.Id, "Lot réapprovisionné avec succès.");
+                }
+
+                // Création d'un nouveau lot
+                Lot newLot = lotCreateDTO.ToLotEntity();
+                int lotId = await lotRepository.AddLot(newLot);
+
+                if (lotId <= 0)
+                    return (false, 0, "Erreur lors de la création du lot.");
+
+                await inventaireProduitService.UpdateQuantiteProduit(newLot.IDProduit);
+
+                return (true, lotId, "Lot créé avec succès.");
+            }
+            catch (Exception ex)
+            {
+                return (false, 0, $"Erreur : {ex.Message}");
+            }
         }
 
         public async Task<bool> ReplenishLotsWithOldQuantity(string RefLot, int Quantite)

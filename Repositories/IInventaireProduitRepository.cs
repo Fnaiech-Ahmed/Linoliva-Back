@@ -11,6 +11,7 @@ namespace tech_software_engineer_consultant_int_backend.Repositories
         Task<InventaireProduit> GetInventaireProduitByProductId(int productId);
         Task<bool> AddInventaireProduit(InventaireProduit inventaireProduit);
         Task<bool> UpdateInventaireProduit(InventaireProduit inventaireProduit);
+        Task<bool> UpdateQuantite(int productId, int newQuantite);
         Task<bool> DeleteInventaireProduit(int inventaireProduitId);
         Task<bool> UpdateInventaireProduitQuantity(int productId, string newProductName, int newQuantity);
     }

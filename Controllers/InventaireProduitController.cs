@@ -41,7 +41,7 @@ namespace tech_software_engineer_consultant_int_backend.Controllers
         {
             string token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
 
-            if (!IsUserAuthorized(token, "InventaireProduitAdminPolicy"))
+            if (!IsUserAuthorized(token, "InventaireProduitSeniorPolicy"))
             {
                 return Unauthorized("Vous n'êtes pas autorisé à ajouter des produits à l'inventaire.");
             }
@@ -61,7 +61,8 @@ namespace tech_software_engineer_consultant_int_backend.Controllers
         {
             string token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
 
-            if (!IsUserAuthorized(token, "InventaireProduitViewPolicy"))
+            if (!IsUserAuthorized(token, "InventaireProduitPolicy"))
+                //InventaireProduitViewPolicy"))
             {
                 return Unauthorized("Vous n'êtes pas autorisé à consulter la liste des produits.");
             }
@@ -75,7 +76,8 @@ namespace tech_software_engineer_consultant_int_backend.Controllers
         {
             string token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
 
-            if (!IsUserAuthorized(token, "InventaireProduitViewPolicy"))
+            if (!IsUserAuthorized(token, "InventaireProduitPolicy"))
+            //InventaireProduitViewPolicy"))
             {
                 return Unauthorized("Vous n'êtes pas autorisé à consulter ce produit.");
             }
@@ -89,7 +91,8 @@ namespace tech_software_engineer_consultant_int_backend.Controllers
         {
             string token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
 
-            if (!IsUserAuthorized(token, "InventaireProduitViewPolicy"))
+            if (!IsUserAuthorized(token, "InventaireProduitPolicy"))
+            //InventaireProduitViewPolicy"))
             {
                 return Unauthorized("Vous n'êtes pas autorisé à vérifier ce produit.");
             }
@@ -124,7 +127,7 @@ namespace tech_software_engineer_consultant_int_backend.Controllers
         {
             string token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
 
-            if (!IsUserAuthorized(token, "InventaireProduitAdminPolicy"))
+            if (!IsUserAuthorized(token, "InventaireProduitSeniorPolicy"))
             {
                 return Unauthorized("Vous n'êtes pas autorisé à supprimer des produits de l'inventaire.");
             }

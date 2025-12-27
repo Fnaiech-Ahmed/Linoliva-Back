@@ -25,9 +25,22 @@ var builder = WebApplication.CreateBuilder(args);
 QuestPDF.Settings.License = LicenseType.Community;
 
 // Configuration de la base de données
-var connectionString = builder.Configuration.GetConnectionString("Default");
+/*var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<MyDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString));*/
+var connectionString = builder.Configuration.GetConnectionString("Default");
+
+// Ajouter Encrypt=False ou TrustServerCertificate=True si SSL pose problème
+builder.Services.AddDbContext<MyDbContext>(options =>
+{
+    options.UseSqlServer(
+        connectionString,
+        sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure(); // réessais automatique en cas d'erreurs transitoires
+        }
+    );
+});
 
 // Ajouter les services Identity
 builder.Services.AddIdentity<User, Role>()

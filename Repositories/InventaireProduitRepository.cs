@@ -86,6 +86,18 @@ namespace tech_software_engineer_consultant_int_backend.Repositories
             }
         }
 
+        public async Task<bool> UpdateQuantite(int productId, int newQuantite)
+        {
+            var inv = await _dbContext.InventaireProduits
+                .FirstOrDefaultAsync(x => x.ProductId == productId);
+
+            if (inv == null)
+                return false;
+
+            inv.Quantity = newQuantite;
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
         public async Task<bool> DeleteInventaireProduit(int inventaireProduitId)
         {
             try

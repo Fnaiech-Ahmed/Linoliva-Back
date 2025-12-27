@@ -2,6 +2,7 @@
 using tech_software_engineer_consultant_int_backend.Models;
 using tech_software_engineer_consultant_int_backend.Repositories;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
 
 namespace tech_software_engineer_consultant_int_backend.Services
 {
@@ -189,10 +190,17 @@ namespace tech_software_engineer_consultant_int_backend.Services
             var updatedUser = userUpdateMPDto.ToUserEntity();
 
             if (userUpdateMPDto.MP != null && existingUser.Mp == ancienMP)
+            {
+                var passwordHasher = new PasswordHasher<User>();
                 existingUser.Mp = updatedUser.Mp;
+                if (updatedUser.Mp != null)
+                    existingUser.PasswordHash = passwordHasher.HashPassword(existingUser, updatedUser.Mp);
+                else
+                    return (false, "Mot de passe vide .");
+            }
 
             User? user = await userRepository.Update(existingUser);
-            if (user!=null && user.Mp == updatedUser.Mp)
+            if (user != null && user.Mp == updatedUser.Mp)
             {
                 return (true, "Le mot de passe de " + user.Civilite + " " + user.FirstName + " a été changée avec succès.");
             }

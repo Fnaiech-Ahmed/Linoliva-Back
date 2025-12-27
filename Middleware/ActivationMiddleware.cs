@@ -30,7 +30,8 @@ namespace tech_software_engineer_consultant_int_backend.Middleware
             "/api/Commande/Create-Commande",
             "/api/Transaction",
             "/api/Facture",
-
+            "/api/InventaireProduit",
+            "/api/Lot",
             "/api/Lot/add-Lot",
             "/api/Lot/Delete-Lot",
 
@@ -52,6 +53,7 @@ namespace tech_software_engineer_consultant_int_backend.Middleware
             "/api/BonDeSortie/get-Bon-De-Sortie-ByID/{id}",
             "/api/BonDeSortie/get-Bon-De-Sortie-ByRef/{reference}",
             "/api/Lot/get-List-Lots",
+            "/api/User",
             "/api/User/create-user",
             "/api/User/addUser",
             "/api/User/GetUsers",
@@ -61,6 +63,7 @@ namespace tech_software_engineer_consultant_int_backend.Middleware
             "/api/User/forgot-password",
             "/api/User/reset-password",
             "/api/BonDeLivraison",
+            "/api/Role",
             "/api/Role/Create-Role",
             "/api/Role/get-list-Roles",
             "/api/Role/Update-Role/{id}",

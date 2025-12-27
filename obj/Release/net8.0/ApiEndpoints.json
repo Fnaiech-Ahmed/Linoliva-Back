@@ -816,7 +816,7 @@
         "IsRequired": true
       },
       {
-        "Name": "ListTransactions",
+        "Name": "listTransactions",
         "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.Models.Transactions, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       }
@@ -1473,6 +1473,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.LotController",
+    "Method": "AchatLot",
+    "RelativePath": "api/Lot/achat-lot",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "tech_software_engineer_consultant_int_backend.DTO.LotsDTOs.LotCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "tech_software_engineer_consultant_int_backend.Controllers.LotController",
