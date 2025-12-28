@@ -1,13 +1,14 @@
 ﻿//using iText.StyledXmlParser.Jsoup.Nodes;
-using tech_software_engineer_consultant_int_backend.Models;
-using tech_software_engineer_consultant_int_backend.DTO.TransactionsDTOs;
-using tech_software_engineer_consultant_int_backend.Repositories;
-using System;
-using System.Collections.Generic;
-using tech_software_engineer_consultant_int_backend.DTO.CommandesDTOs;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NuGet.Protocol.Core.Types;
+using System;
+using System.Collections.Generic;
 using tech_software_engineer_consultant_int_backend.DTO.BLDTO;
+using tech_software_engineer_consultant_int_backend.DTO.CommandesDTOs;
+using tech_software_engineer_consultant_int_backend.DTO.TransactionsDTOs;
+using tech_software_engineer_consultant_int_backend.Models;
+using tech_software_engineer_consultant_int_backend.Repositories;
 
 
 
@@ -18,15 +19,17 @@ namespace tech_software_engineer_consultant_int_backend.Services
         private readonly ICommandeRepository commandeRepository;
         private readonly ISequenceRepository<Sequence> sequenceRepository;
         private ITransactionService transactionService;
+        private readonly MyDbContext _dbContext;
 
-        public CommandeService(ICommandeRepository repository, ITransactionService _transactionService, ISequenceRepository<Sequence> _sequenceRepository)
+        public CommandeService(ICommandeRepository repository, ITransactionService _transactionService, ISequenceRepository<Sequence> _sequenceRepository, MyDbContext dbContext)
         {
             commandeRepository = repository;
             transactionService = _transactionService;
             sequenceRepository = _sequenceRepository;
+            _dbContext = dbContext;
         }
 
-        public async Task<bool> AddCommande(CommandeCreateDTO commandeCreateDTO, List<TransactionCreateDto> ListTransactionsCreateDTOs)
+        /*public async Task<bool> AddCommande(CommandeCreateDTO commandeCreateDTO, List<TransactionCreateDto> ListTransactionsCreateDTOs)
         {
             List<Transactions> ListTransactions = new List<Transactions>();
             Commande commande = commandeCreateDTO.ToCommandeEntity();
@@ -76,6 +79,114 @@ namespace tech_software_engineer_consultant_int_backend.Services
             bool resultatAjoutCommande = await commandeRepository.AddCommande(commande);
 
             return resultatAjoutCommande;
+        }
+        */
+        /*public async Task<bool> AddCommande(CommandeCreateDTO commandeCreateDTO, List<TransactionCreateDto> ListTransactionsCreateDTOs)
+        {
+            // Ouverture d'une transaction unique pour TOUTE la commande
+            using var globalTransaction = await _dbContext.Database.BeginTransactionAsync();
+
+            try
+            {
+                // Conversion du DTO en entité et génération de la référence unique
+                Commande commande = commandeCreateDTO.ToCommandeEntity();
+                commande.ReferenceCommande = await this.GenerateNextRef();
+
+                List<int> idsTransactionsGenerees = new List<int>();
+
+                // ÉTAPE 1 : Traitement de chaque transaction de la liste
+                foreach (TransactionCreateDto item in ListTransactionsCreateDTOs)
+                {
+                    // Appel de AddTransaction (qui partage le même _dbContext)
+                    var (success, transactionId) = await transactionService.AddTransaction(item, commande.ReferenceCommande);
+
+                    if (!success)
+                    {
+                        // Si UNE SEULE transaction échoue (ex: stock insuffisant), on annule TOUT
+                        await globalTransaction.RollbackAsync();
+                        return false;
+                    }
+
+                    idsTransactionsGenerees.Add(transactionId);
+                }
+
+                // ÉTAPE 2 : Finalisation de l'objet Commande
+                commande.ListIdsTransactions = idsTransactionsGenerees;
+                commande.MontantTotalTTC = await this.CalculerMontantTotalTTC(commande);
+                commande.MontantTotalHT = await this.CalculerMontantTotalHT(commande);
+
+                // Enregistrement de la commande en base
+                bool resultatAjoutCommande = await commandeRepository.AddCommande(commande);
+
+                if (!resultatAjoutCommande)
+                {
+                    await globalTransaction.RollbackAsync();
+                    return false;
+                }
+
+                // ÉTAPE 3 : Validation finale (Commit) de toutes les opérations
+                await globalTransaction.CommitAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                // Annulation totale en cas d'erreur technique imprévue
+                await globalTransaction.RollbackAsync();
+                throw;
+            }
+        }
+        */
+
+        public async Task<bool> AddCommande(CommandeCreateDTO commandeCreateDTO, List<TransactionCreateDto> ListTransactionsCreateDTOs)
+        {
+            // On récupère la stratégie d'exécution configurée (RetryStrategy)
+            var strategy = _dbContext.Database.CreateExecutionStrategy();
+
+            // La stratégie va exécuter tout ce qui est à l'intérieur et pourra le "rejouer" en cas de coupure réseau
+            return await strategy.ExecuteAsync(async () =>
+            {
+                using var globalTransaction = await _dbContext.Database.BeginTransactionAsync();
+
+                try
+                {
+                    Commande commande = commandeCreateDTO.ToCommandeEntity();
+                    commande.ReferenceCommande = await this.GenerateNextRef();
+                    List<int> idsTransactionsGenerees = new List<int>();
+
+                    foreach (TransactionCreateDto item in ListTransactionsCreateDTOs)
+                    {
+                        // Note : On passe bien l'instance de commande ou sa réf
+                        var (success, transactionId) = await transactionService.AddTransaction(item, commande.ReferenceCommande);
+
+                        if (!success)
+                        {
+                            await globalTransaction.RollbackAsync();
+                            return false;
+                        }
+                        idsTransactionsGenerees.Add(transactionId);
+                    }
+
+                    commande.ListIdsTransactions = idsTransactionsGenerees;
+                    commande.MontantTotalTTC = await this.CalculerMontantTotalTTC(commande);
+                    commande.MontantTotalHT = await this.CalculerMontantTotalHT(commande);
+
+                    bool resultatAjoutCommande = await commandeRepository.AddCommande(commande);
+
+                    if (!resultatAjoutCommande)
+                    {
+                        await globalTransaction.RollbackAsync();
+                        return false;
+                    }
+
+                    await globalTransaction.CommitAsync();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    await globalTransaction.RollbackAsync();
+                    throw;
+                }
+            });
         }
 
         public async Task<string> GenerateNextRef()

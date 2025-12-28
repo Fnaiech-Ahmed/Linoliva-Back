@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tech-software-engineer-consultant-int-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d2956af1bb9953b967bbafbcef737dd1aad96126")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+494a9f5a6b60be361e46b922bcf379519c2ac86c")]
 [assembly: System.Reflection.AssemblyProductAttribute("tech-software-engineer-consultant-int-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tech-software-engineer-consultant-int-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

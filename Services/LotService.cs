@@ -155,7 +155,7 @@ namespace tech_software_engineer_consultant_int_backend.Services
          }
          */
 
-        public async Task<VenteResult> VenteQuantite(int productId, int quantiteSaisie)
+        /*public async Task<VenteResult> VenteQuantite(int productId, int quantiteSaisie)
         {
             // Initialisation du retour
             var result = new VenteResult();
@@ -215,6 +215,123 @@ namespace tech_software_engineer_consultant_int_backend.Services
                 return result;
             }
         }
+        */
+
+        /*public async Task<VenteResult> VenteQuantite(int productId, int quantiteSaisie)
+        {
+            var result = new VenteResult();
+            if (quantiteSaisie <= 0) return result;
+
+            using var transaction = await _dbContext.Database.BeginTransactionAsync();
+
+            try
+            {
+                // 1. Tri STABLE (Date + Id) pour éviter les sauts de ligne aléatoires
+                var listeLots = await _dbContext.Lots
+                    .Where(l => l.IDProduit == productId && l.Quantite > 0)
+                    .OrderBy(l => l.Date)
+                    .ThenBy(l => l.Id)
+                    .ToListAsync();
+
+                int resteAPrelever = quantiteSaisie;
+                Console.WriteLine($"--- DÉBUT VENTE : Besoin de {quantiteSaisie} unités ---");
+
+                foreach (var lot in listeLots)
+                {
+                    // Vérification de sortie
+                    if (resteAPrelever <= 0)
+                    {
+                        Console.WriteLine("-> Besoin comblé. Arrêt de la boucle.");
+                        break;
+                    }
+
+                    int quantiteDisponible = lot.Quantite;
+                    int montantAPrelever = Math.Min(quantiteDisponible, resteAPrelever);
+
+                    Console.WriteLine($"Lot {lot.Reference} | Stock: {quantiteDisponible} | On prend: {montantAPrelever}");
+
+                    // --- LA MISE À JOUR CRITIQUE ---
+                    lot.Quantite -= montantAPrelever; // On réduit le stock du lot
+                    resteAPrelever -= montantAPrelever; // ON RÉDUIT LE RESTE À SOUSTRAIRE
+
+                    Console.WriteLine($"Reste à trouver après ce lot : {resteAPrelever}");
+
+                    result.LotsImpactes.Add((lot, montantAPrelever));
+                }
+
+                if (resteAPrelever > 0)
+                {
+                    Console.WriteLine($"!!! ÉCHEC : Manque encore {resteAPrelever} unités.");
+                    await transaction.RollbackAsync();
+                    result.Success = false;
+                    result.Message = "Stock insuffisant.";
+                    return result;
+                }
+
+                await _dbContext.SaveChangesAsync();
+                await transaction.CommitAsync();
+
+                result.Success = true;
+                Console.WriteLine("--- TRANSACTION VALIDÉE ---");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                result.Success = false;
+                result.Message = ex.Message;
+                return result;
+            }
+        }
+        */
+
+        public async Task<VenteResult> VenteQuantite(int productId, int quantiteSaisie)
+        {
+            var result = new VenteResult();
+            if (quantiteSaisie <= 0) return result;
+
+            // Suppression du BeginTransaction ici
+            try
+            {
+                var listeLots = await _dbContext.Lots
+                    .Where(l => l.IDProduit == productId && l.Quantite > 0)
+                    .OrderBy(l => l.Date)
+                    .ThenBy(l => l.Id)
+                    .ToListAsync();
+
+                int resteAPrelever = quantiteSaisie;
+
+                foreach (var lot in listeLots)
+                {
+                    if (resteAPrelever <= 0) break;
+
+                    int montantAPrelever = Math.Min(lot.Quantite, resteAPrelever);
+                    lot.Quantite -= montantAPrelever;
+                    resteAPrelever -= montantAPrelever;
+
+                    result.LotsImpactes.Add((lot, montantAPrelever));
+                }
+
+                if (resteAPrelever > 0)
+                {
+                    result.Success = false;
+                    result.Message = "Stock insuffisant.";
+                    return result;
+                }
+
+                // On sauvegarde les changements dans le context partagé
+                await _dbContext.SaveChangesAsync();
+                result.Success = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+                return result;
+            }
+        }
+
         public async Task<(bool Success, int LotId, string Message)> AchatQuantite(LotCreateDTO lotCreateDTO)
         {
             try

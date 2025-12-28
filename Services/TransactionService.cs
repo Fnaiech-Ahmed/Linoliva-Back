@@ -105,7 +105,7 @@ namespace tech_software_engineer_consultant_int_backend.Services
              }
          }*/
 
-        public async Task<(bool, int)> AddTransaction(TransactionCreateDto dto, string referenceCommande)
+        /*public async Task<(bool, int)> AddTransaction(TransactionCreateDto dto, string referenceCommande)
         {
             // Démarrer une transaction SQL pour garantir la cohérence
             using var dbTransaction = await _dbContext.Database.BeginTransactionAsync();
@@ -216,6 +216,81 @@ namespace tech_software_engineer_consultant_int_backend.Services
                 throw;
             }
         }
+        */
+
+        public async Task<(bool, int)> AddTransaction(TransactionCreateDto dto, string referenceCommande)
+        {
+            // Note : On n'ouvre pas de transaction ici, on utilise celle de AddCommande
+            try
+            {
+                // 1. Initialisation de la transaction
+                var transaction = dto.ToTransactionsEntity();
+                transaction.ReferenceCommande = referenceCommande;
+
+                // Calculs financiers de base
+                decimal amountHT = transaction.QuantityEntered * transaction.PrixUnitaire;
+                transaction.PTHT = amountHT;
+                transaction.PTTC = amountHT + (amountHT * transaction.TVA / 100);
+
+                List<(Lot lot, int qte)> lotsImpactes = new();
+
+                // 2. LOGIQUE DE VENTE (DÉBIT STOCK)
+                if (transaction.TypeTransaction == TypeTransaction.Vente)
+                {
+                    // Appel au service FIFO
+                    VenteResult resultatVente = await lotService.VenteQuantite(transaction.ProductId, transaction.QuantityEntered);
+
+                    if (!resultatVente.Success) return (false, 0); // Échec si stock insuffisant
+
+                    // Récupération de la liste des lots réellement touchés
+                    lotsImpactes = resultatVente.LotsImpactes;
+                    transaction.ReferenceLot = lotsImpactes.First().lot.Reference;
+                }
+                else
+                {
+                    transaction.ReferenceLot = "Néant";
+                }
+
+                // 3. Enregistrement de la ligne de transaction
+                var (success, transactionId) = await transactionRepository.AddTransaction(transaction);
+                if (!success) return (false, 0);
+
+                // 4. Mise à jour de l'inventaire global du produit
+                var (ok, newRemainingQuantity) = await inventaireProduitService.ModifierQuantiteProduit(
+                        transaction.ProductId,
+                        transaction.NomProduit,
+                        transaction.QuantityEntered,
+                        transaction.TypeTransaction
+                    );
+
+                if (!ok) return (false, 0);
+
+                // 5. Liaison technique entre la transaction et les lots (Table de jointure)
+                if (transaction.TypeTransaction == TypeTransaction.Vente)
+                {
+                    foreach (var item in lotsImpactes)
+                    {
+                        var dtoLT = new LotsTransactionsDTO
+                        {
+                            IdTransaction = transactionId.ToString(),
+                            RefLot = item.lot.Reference,
+                            Quantite = item.qte
+                        };
+                        await lotsTransactionsService.AddLT(dtoLT);
+                    }
+                }
+
+                // On valide les changements de cette transaction dans le context
+                await _dbContext.SaveChangesAsync();
+
+                return (true, transactionId);
+            }
+            catch (Exception)
+            {
+                // L'exception remontera à AddCommande qui fera le Rollback global
+                throw;
+            }
+        }
 
         public async Task<List<TransactionsDTO>> GetTransactionsByRefCommande(string ReferenceCommande)
         {
@@ -323,8 +398,10 @@ namespace tech_software_engineer_consultant_int_backend.Services
                                         // Nous sélectionnons les lots d'ou nous allons prendre la quantité nécessaire
                                         // et faire un enregistrement des LotsTransactions dans BD
                                         
-                                        List<(Lot, int)> resultatVenteQuantiteLot = await lotService.VenteQuantite(transaction.ProductId, transaction.QuantityEntered);
-                                        
+                                        //List<(Lot, int)> resultatVenteQuantiteLot = await lotService.VenteQuantite(transaction.ProductId, transaction.QuantityEntered);
+                                        VenteResult venteResult = await lotService.VenteQuantite(transaction.ProductId, transaction.QuantityEntered);
+                                        List<(Lot, int)> resultatVenteQuantiteLot = venteResult.LotsImpactes;
+
                                         for (int i = 0; i < resultatVenteQuantiteLot.Count; i++)
                                         {
                                             //Enregistrement du LotTransaction dans BD
