@@ -47,7 +47,7 @@ namespace tech_software_engineer_consultant_int_backend.Middleware
             "/api/Facture/Get-List-Factures",
             "/api/Facture/get-Facture-ID/{id}",
             "/api/Facture/update-Facture/{id}",
-
+            "/api/BonDeSortie",
             "/api/BonDeSortie/Create-Bon-De-Sortie",
             "/api/BonDeSortie/Get-List-Bons-De-Sortie",
             "/api/BonDeSortie/get-Bon-De-Sortie-ByID/{id}",

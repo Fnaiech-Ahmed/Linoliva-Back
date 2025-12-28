@@ -16,7 +16,7 @@ namespace tech_software_engineer_consultant_int_backend.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<bool> AddBonDeSortie(BonDeSortie bonDeSortie)
+        /*public async Task<bool> AddBonDeSortie(BonDeSortie bonDeSortie)
         {
             try
             {
@@ -35,6 +35,34 @@ namespace tech_software_engineer_consultant_int_backend.Repositories
             catch (Exception ex)
             {
                 // Log the exception
+                return false;
+            }
+        }*/
+
+        public async Task<bool> AddBonDeSortie(BonDeSortie bonDeSortie)
+        {
+            try
+            {
+                if (bonDeSortie.ListeFactures == null)
+                    bonDeSortie.ListeFactures = new List<Facture>();
+
+                bonDeSortie.ListeFacturesSerialized = bonDeSortie.SerializeListeFactures(bonDeSortie.ListeFactures);
+
+                await _dbContext.BonDeSorties.AddAsync(bonDeSortie);
+
+                // SaveChanges renverra le nombre de lignes ou lèvera une exception
+                int numRowsAffected = await _dbContext.SaveChangesAsync();
+
+                System.Diagnostics.Trace.WriteLine($"Succès ! Lignes affectées: {numRowsAffected}");
+                return numRowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                // TRÈS IMPORTANT : Capturez l'erreur pour savoir QUOI corriger
+                System.Diagnostics.Trace.WriteLine($"ÉCHEC AJOUT BS: {ex.Message}");
+                if (ex.InnerException != null)
+                    System.Diagnostics.Trace.WriteLine($"DÉTAIL SQL: {ex.InnerException.Message}");
+
                 return false;
             }
         }

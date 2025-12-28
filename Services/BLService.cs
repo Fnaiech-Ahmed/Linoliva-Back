@@ -16,30 +16,66 @@ namespace tech_software_engineer_consultant_int_backend.Services
             sequenceRepository = _sequenceRepository;
         }
 
+        /* public async Task<bool> AddBonDeLivraison(BLCreateDTO bonDeLivraisonDTO)
+         {
+             BonDeLivraison bonDeLivraison = bonDeLivraisonDTO.ToBonDeLivraisonEntity();
+
+             // Génération de la référence et mise à jour de la séquence de façon synchrone
+             string RefBL;
+             lock (sequenceRepository)  // Assure qu'aucun autre thread ne modifie la séquence en même temps
+             {
+                 RefBL = this.GenerateNextRef();  // reste synchrone
+             }
+             bonDeLivraison.Reference = RefBL;
+
+             bonDeLivraison.MontantTotalHTBL = this.CalculerMontantTotalHT(bonDeLivraison);
+             bonDeLivraison.NetHT = this.CalculerNetHT(bonDeLivraison);
+             bonDeLivraison.MontantTotalTTCBL = this.CalculerMontantTotalTTC(bonDeLivraison);
+
+             // Ajout du Bon de Livraison (asynchrone)
+             bool resultAjout = await blRepository.AddBonDeLivraison(bonDeLivraison);
+
+             return resultAjout;
+         }*/
         public async Task<bool> AddBonDeLivraison(BLCreateDTO bonDeLivraisonDTO)
         {
             BonDeLivraison bonDeLivraison = bonDeLivraisonDTO.ToBonDeLivraisonEntity();
 
-            // Génération de la référence et mise à jour de la séquence de façon synchrone
-            string RefBL;
-            lock (sequenceRepository)  // Assure qu'aucun autre thread ne modifie la séquence en même temps
-            {
-                RefBL = this.GenerateNextRef();  // reste synchrone
-            }
-            bonDeLivraison.Reference = RefBL;
+            bonDeLivraison.Reference = await GenerateNextRefAsync();
 
-            bonDeLivraison.MontantTotalHTBL = this.CalculerMontantTotalHT(bonDeLivraison);
-            bonDeLivraison.NetHT = this.CalculerNetHT(bonDeLivraison);
-            bonDeLivraison.MontantTotalTTCBL = this.CalculerMontantTotalTTC(bonDeLivraison);
+            bonDeLivraison.MontantTotalHTBL = CalculerMontantTotalHT(bonDeLivraison);
+            bonDeLivraison.NetHT = CalculerNetHT(bonDeLivraison);
+            bonDeLivraison.MontantTotalTTCBL = CalculerMontantTotalTTC(bonDeLivraison);
 
-            // Ajout du Bon de Livraison (asynchrone)
-            bool resultAjout = await blRepository.AddBonDeLivraison(bonDeLivraison);
-
-            return resultAjout;
+            return await blRepository.AddBonDeLivraison(bonDeLivraison);
         }
 
 
-        public string GenerateNextRef()
+        public async Task<string> GenerateNextRefAsync()
+        {
+            var sequence = sequenceRepository.GetSequenceByName("BonDeLivraison");
+
+            if (sequence == null)
+            {
+                sequence = new Sequence
+                {
+                    Name = "BonDeLivraison",
+                    NextValue = 1
+                };
+
+                await sequenceRepository.AddSequence(sequence);
+            }
+            else
+            {
+                sequence.NextValue++;
+                await sequenceRepository.UpdateSequence(sequence);
+            }
+
+            return $"BLTSECINT-{sequence.NextValue:D5}";
+        }
+
+
+        /*public string GenerateNextRef()
         {
             var sequence = sequenceRepository.GetSequenceByName("BonDeLivraison");
             
@@ -58,7 +94,7 @@ namespace tech_software_engineer_consultant_int_backend.Services
             }
 
             return $"BLTSECINT-{sequence.NextValue:D5}";
-        }
+        }*/
 
 
 
