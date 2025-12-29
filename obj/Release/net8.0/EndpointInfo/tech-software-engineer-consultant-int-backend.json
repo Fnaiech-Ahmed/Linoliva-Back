@@ -1268,12 +1268,12 @@
             }
           },
           {
-            "name": "listTransactions",
+            "name": "ListTransactions",
             "in": "query",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/Transactions"
+                "type": "string"
               }
             }
           }
@@ -8506,59 +8506,6 @@
           },
           "typeTransaction": {
             "$ref": "#/components/schemas/TypeTransaction"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Transactions": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "referenceCommande": {
-            "type": "string",
-            "nullable": true
-          },
-          "referenceLot": {
-            "type": "string",
-            "nullable": true
-          },
-          "productId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nomProduit": {
-            "type": "string",
-            "nullable": true
-          },
-          "prixUnitaire": {
-            "type": "number",
-            "format": "double"
-          },
-          "quantityEntered": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "ptht": {
-            "type": "number",
-            "format": "double"
-          },
-          "tva": {
-            "type": "number",
-            "format": "double"
-          },
-          "pttc": {
-            "type": "number",
-            "format": "double"
-          },
-          "typeTransaction": {
-            "$ref": "#/components/schemas/TypeTransaction"
-          },
-          "remainingQuantity": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false

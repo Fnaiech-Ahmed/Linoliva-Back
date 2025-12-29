@@ -461,9 +461,9 @@ namespace tech_software_engineer_consultant_int_backend.Services
 
 
         public async Task<(bool, string)> UpdateCommande(
-    int commandeId,
-    CommandeUpdateDTO commandeUpdateDTO,
-    List<Transactions> newTransactions)
+int commandeId,
+CommandeUpdateDTO commandeUpdateDTO,
+List<Transactions> newTransactions)
         {
             try
             {
@@ -493,19 +493,23 @@ namespace tech_software_engineer_consultant_int_backend.Services
 
                 // 6️⃣ Transactions à ajouter / mettre à jour
                 var tasks = new List<Task>();
+                System.Diagnostics.Trace.WriteLine("Add Trss");
+                System.Diagnostics.Trace.WriteLine($"Tr count : {newTransactions.Count}");
                 foreach (var tr in newTransactions)
                 {
+                    System.Diagnostics.Trace.WriteLine("Add Tr");
                     if (tr.Id == 0 || !existingDict.ContainsKey(tr.Id))
                     {
                         // Nouvelle transaction
+                        System.Diagnostics.Trace.WriteLine($"Tr Add = {commande.ReferenceCommande}");
                         var createDto = new TransactionCreateDto(tr);
-                        tasks.Add(transactionService.AddTransaction(createDto, commande.ReferenceCommande));
+                        await transactionService.AddTransaction(createDto, commande.ReferenceCommande);
                     }
                     else
                     {
                         // Mise à jour
                         var updateDto = TransactionsUpdateDTO.FromTransactionsEntity(tr);
-                        tasks.Add(transactionService.UpdateTransaction(tr.Id, updateDto));
+                        await transactionService.UpdateTransaction(tr.Id, updateDto);
                     }
                 }
 
@@ -551,6 +555,113 @@ namespace tech_software_engineer_consultant_int_backend.Services
                 return (false, "Erreur interne. Veuillez contacter le support.");
             }
         }
+
+
+        /*public async Task<(bool, string)> UpdateCommande(
+int commandeId,
+CommandeUpdateDTO commandeUpdateDTO,
+List<Transactions> newTransactions)
+        {
+            try
+            {
+                // 1️⃣ Récupération de la commande existante
+                var existingCommande = await commandeRepository.GetCommandeById(commandeId);
+                if (existingCommande == null)
+                    return (false, $"Commande {commandeId} introuvable.");
+
+                // 2️⃣ Création de la nouvelle instance via le DTO
+                var commande = commandeUpdateDTO.ToCommandeEntity();
+                commande.Id = existingCommande.Id;
+                commande.ReferenceCommande = existingCommande.ReferenceCommande;
+                commande.ListIdsTransactions = new List<int>();
+
+                // 3️⃣ Détacher l’ancienne instance pour éviter conflit EF Core
+                // C'est une bonne pratique si le repository gère un contexte différent ou si l'entité est modifiée ailleurs.
+                commandeRepository.Detach(existingCommande);
+
+                // 4️⃣ Récupérer toutes les transactions existantes de la commande
+                var existingTransactions = (await transactionService
+                        .GetTransactionsByRefCommande(existingCommande.ReferenceCommande))
+                        .Select(t => t.ToTransactionsEntity()) // Assurez-vous que ToTransactionsEntity() est bien défini
+                        .ToList();
+
+                // 5️⃣ Créer des dictionnaires pour comparaison rapide (par ID)
+                var existingDict = existingTransactions.ToDictionary(t => t.Id, t => t);
+                // newTransactions est la liste de référence pour l'état final
+                var newDict = newTransactions.Where(t => t.Id > 0).ToDictionary(t => t.Id, t => t);
+
+                var tasks = new List<Task>();
+
+                // 6️⃣ Logique d'AJOUT et de MISE À JOUR
+                foreach (var tr in newTransactions)
+                {
+                    if (tr.Id == 0 || !existingDict.ContainsKey(tr.Id))
+                    {
+                        // AJOUT : Nouvelle transaction (ID = 0 ou ID non trouvé dans les existantes)
+                        var createDto = new TransactionCreateDto(tr);
+                        tasks.Add(transactionService.AddTransaction(createDto, commande.ReferenceCommande));
+                    }
+                    else
+                    {
+                        // MISE À JOUR : Transaction existante
+                        var updateDto = TransactionsUpdateDTO.FromTransactionsEntity(tr);
+                        tasks.Add(transactionService.UpdateTransaction(tr.Id, updateDto));
+                    }
+                }
+
+                // Attendre que tous les ajouts et mises à jour soient terminés
+                await Task.WhenAll(tasks);
+
+                // 7️⃣ Logique de SUPPRESSION
+                // On supprime toute transaction existante qui n'est PAS dans la liste newTransactions (la liste de référence)
+                var toDelete = existingTransactions
+                    .Where(t => !newDict.ContainsKey(t.Id))
+                    .ToList();
+
+                // Exécuter les suppressions séquentiellement ou en parallèle (si le service le supporte)
+                var deleteTasks = new List<Task>();
+                foreach (var tr in toDelete)
+                    deleteTasks.Add(transactionService.DeleteTransaction(tr.Id));
+
+                await Task.WhenAll(deleteTasks);
+
+
+                // 8️⃣ Mise à jour de la liste des IDs dans l'entité Commande
+                // On récupère la liste finale des IDs après toutes les opérations (Add/Update/Delete)
+                var updatedTransactions = (await transactionService
+                        .GetTransactionsByRefCommande(commande.ReferenceCommande))
+                        .Select(t => t.Id)
+                        .ToList();
+
+                commande.ListIdsTransactions = updatedTransactions;
+
+                // 9️⃣ Recalcul des montants
+                commande.MontantTotalTTC = await CalculerMontantTotalTTC(commande);
+                commande.MontantTotalHT = await CalculerMontantTotalHT(commande);
+
+                // 🔟 Update final dans la BD
+                var result = await commandeRepository.UpdateCommande(commande);
+
+                if (result.IsSuccess)
+                {
+                    Console.WriteLine($"Commande {commande.ReferenceCommande} mise à jour avec succès.");
+                    return (true, result.Message);
+                }
+                else
+                {
+                    Console.WriteLine($"Erreur mise à jour commande : {result.Message}");
+                    return (false, result.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception lors de la mise à jour de la commande : {ex.Message}");
+                // En cas d'erreur, il est crucial que les services TransactionService gèrent leur propre rollback
+                // ou que la fonction UpdateCommande soit englobée dans une transaction globale si elle est appelée par un service supérieur.
+                return (false, "Erreur interne. Veuillez contacter le support.");
+            }
+        }*/
+
 
 
 

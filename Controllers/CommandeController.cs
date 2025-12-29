@@ -149,7 +149,7 @@ namespace tech_software_engineer_consultant_int_backend.Controllers
         }
 
         [HttpPut("update-Commande/{commandeId}")]
-        public async Task<ActionResult> UpdateCommande(
+        /*public async Task<ActionResult> UpdateCommande(
             int commandeId,
             [FromBody] CommandeUpdateDTO commande,
             [FromQuery] List<Transactions> listTransactions)
@@ -183,6 +183,59 @@ namespace tech_software_engineer_consultant_int_backend.Controllers
                     StatusCodes.Status500InternalServerError,
                     new { message = message ?? "Échec lors de la mise à jour de la commande." }
                 );
+            }
+        }*/
+        public async Task<ActionResult> UpdateCommande(
+    int commandeId,
+    [FromBody] CommandeUpdateDTO commande,
+    [FromQuery] List<string> ListTransactions) // ✅ Liste de chaînes JSON
+        {
+            if (!IsUserAuthorized("CommandeSeniorPolicy"))
+            {
+                return Unauthorized(new { message = "Accès refusé." });
+            }
+
+            if (commande == null)
+            {
+                return BadRequest("Données de la commande manquantes.");
+            }
+
+            if (commandeId <= 0)
+            {
+                return BadRequest("ID de commande invalide.");
+            }
+
+            // 🔁 Convertir les chaînes JSON en objets Transactions
+            var transactions = new List<Transactions>();
+            if (ListTransactions != null)
+            {
+                foreach (var json in ListTransactions)
+                {
+                    try
+                    {
+                        var transaction = System.Text.Json.JsonSerializer.Deserialize<Transactions>(
+                            json,
+                            new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+                        );
+                        if (transaction != null)
+                            transactions.Add(transaction);
+                    }
+                    catch (Exception ex)
+                    {
+                        return BadRequest($"Erreur de format JSON dans une transaction : {ex.Message}");
+                    }
+                }
+            }
+
+            var (isSuccess, message) = await _commandeService.UpdateCommande(commandeId, commande, transactions);
+
+            if (isSuccess)
+            {
+                return Ok(new { message = message ?? "Commande mise à jour avec succès." });
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message });
             }
         }
 

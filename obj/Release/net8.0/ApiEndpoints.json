@@ -816,8 +816,8 @@
         "IsRequired": true
       },
       {
-        "Name": "listTransactions",
-        "Type": "System.Collections.Generic.List\u00601[[tech_software_engineer_consultant_int_backend.Models.Transactions, tech-software-engineer-consultant-int-backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Name": "ListTransactions",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       }
     ],
